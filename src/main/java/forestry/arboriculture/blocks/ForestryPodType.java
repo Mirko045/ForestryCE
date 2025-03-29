@@ -7,11 +7,13 @@ import forestry.api.core.IBlockSubtype;
 import forestry.api.genetics.alleles.ForestryAlleles;
 import forestry.api.genetics.alleles.IValueAllele;
 
-// todo add coconut, was planned
+
 public enum ForestryPodType implements IBlockSubtype {
 	COCOA(ForestryAlleles.FRUIT_COCOA),
+	//TODO: change all of these to be 'bunches'. Could also be used for Bananas?
 	DATES(ForestryAlleles.FRUIT_DATES),
-	PAPAYA(ForestryAlleles.FRUIT_PAPAYA);
+	PAPAYA(ForestryAlleles.FRUIT_PAPAYA),
+	COCONUT(ForestryAlleles.FRUIT_COCONUT);
 
 	private final IValueAllele<IFruit> allele;
 
