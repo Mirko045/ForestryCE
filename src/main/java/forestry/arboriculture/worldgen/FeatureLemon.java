@@ -17,20 +17,42 @@ import net.minecraft.world.level.LevelAccessor;
 import forestry.api.arboriculture.ITreeGenData;
 import forestry.core.worldgen.FeatureHelper;
 
+import java.util.Set;
+
 public class FeatureLemon extends FeatureTree {
 
 	public FeatureLemon(ITreeGenData tree) {
-		super(tree, 6, 3);
+		super(tree, 3, 3, 3);
+	}
+
+	@Override
+	public Set<BlockPos> generateTrunk(LevelAccessor level, RandomSource rand, TreeBlockTypeLog wood, BlockPos startPos) {
+		FeatureHelper.generateTreeTrunk(level, rand, wood, startPos, height, girth, 0, 0, null, 0);
+
+
+		return FeatureHelper.generateBranches(level, rand, wood,
+				startPos.offset(0, height/2, 0),
+				girth,
+				0, 0.25f,
+				(girth/3)+1,
+				2, 0.75f);
 	}
 
 	@Override
 	protected void generateLeaves(LevelAccessor level, RandomSource rand, TreeBlockTypeLeaf leaf, TreeContour contour, BlockPos startPos) {
-		int yCenter = height - girth;
-		yCenter = yCenter > 2 ? yCenter : 3;
-		int radius = Math.round((2 + rand.nextInt(girth)) * (height / 4.0f));
-		if (radius > 4) {
-			radius = 4;
+
+
+		int leafSpawn = height-1;
+
+		int radius = (int)Math.ceil(girth/2f)+1;
+		do {
+			FeatureHelper.generateEllipsoid(level, startPos.offset(girth/2, leafSpawn--, girth/2), radius, 1f, radius, 1.5f, leaf, FeatureHelper.EnumReplaceMode.SOFT, contour);
+		} while (leafSpawn > 2);
+
+
+		for (BlockPos branchEnd : contour.getBranchEnds()) {
+			FeatureHelper.generateCylinderFromPos(level, leaf, branchEnd, 1+(int)(girth/2f), 2+((girth-1)/2), FeatureHelper.EnumReplaceMode.AIR, contour);
 		}
-		FeatureHelper.generateSphereFromTreeStartPos(level, startPos.offset(0, yCenter, 0), girth, radius, leaf, FeatureHelper.EnumReplaceMode.AIR, contour);
+
 	}
 }
