@@ -52,22 +52,6 @@ public class FeatureOrange extends FeatureTree {
 	@Override
 	protected void generateLeaves(LevelAccessor level, RandomSource rand, TreeBlockTypeLeaf leaf, TreeContour contour, BlockPos startPos) {
 
-		/*float radius = (float)Math.ceil(girth/1.5f)+1;
-		FeatureHelper.generateEllipsoid(level, startPos.offset(girth/2, height, girth/2), radius, 1f, radius, 1.75f, leaf, FeatureHelper.EnumReplaceMode.SOFT, contour);
-
-		if (height >= 5) {
-			FeatureHelper.generateEllipsoid(level, startPos.offset(girth/2, (2*height)/3, girth/2), radius+1, height/3f, radius+1, 1.75f, leaf, FeatureHelper.EnumReplaceMode.SOFT, contour);
-
-		}
-
-		int spawnrange = height+1-rand.nextIntBetweenInclusive(1,2); //leave 1-2 blocks of clearance at the base of the tree
-		int leafspawn = height+1;
-
-		float topSpawnRange = (2f*spawnrange)/5;
-		float bottomSpawnRange = (3f*spawnrange)/5;
-
-		float radius = (float)Math.ceil(girth/1.5f);*/
-
 		float heightIncreasePercent = height/3f;
 
 		float radius = (float)Math.ceil(girth/1.5f)+1;
@@ -79,9 +63,5 @@ public class FeatureOrange extends FeatureTree {
 			FeatureHelper.generateCylinderFromPos(level, leaf, branchEnd, heightIncreasePercent+0.5f, 1.25f, 2, FeatureHelper.EnumReplaceMode.SOFT, contour);
 		}
 
-	}
-
-	public void poopys(){
-		System.out.println("Hello, world!");
 	}
 }
