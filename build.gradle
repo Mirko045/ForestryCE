@@ -110,12 +110,12 @@ dependencies {
 	modImplementation 'com.github.thedarkcolour:ModKit:0302f9aa42'
 
 	// Mekanism (testing)
-	def mekanism_version = '1.20.1-10.4.9.61'
-	compileOnly "mekanism:Mekanism:${mekanism_version}:api"
-	modRuntimeOnly "mekanism:Mekanism:${mekanism_version}" // Mekanism
-	modRuntimeOnly "mekanism:Mekanism:${mekanism_version}:additions" // Mekanism: Additions
-	modRuntimeOnly "mekanism:Mekanism:${mekanism_version}:generators" // Mekanism: Generators
-	modRuntimeOnly "mekanism:Mekanism:${mekanism_version}:tools" // Mekanism: Tools
+	//def mekanism_version = '1.20.1-10.4.9.61'
+	//compileOnly "mekanism:Mekanism:${mekanism_version}:api"
+	//modRuntimeOnly "mekanism:Mekanism:${mekanism_version}" // Mekanism
+	//modRuntimeOnly "mekanism:Mekanism:${mekanism_version}:additions" // Mekanism: Additions
+	//modRuntimeOnly "mekanism:Mekanism:${mekanism_version}:generators" // Mekanism: Generators
+	//modRuntimeOnly "mekanism:Mekanism:${mekanism_version}:tools" // Mekanism: Tools
 
 	// DEV ONLY
 	compileOnly "org.jetbrains:annotations:23.0.0"
