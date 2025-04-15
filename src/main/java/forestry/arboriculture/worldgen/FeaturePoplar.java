@@ -26,10 +26,19 @@ public class FeaturePoplar extends FeatureTree {
 	@Override
 	protected void generateLeaves(LevelAccessor level, RandomSource rand, TreeBlockTypeLeaf leaf, TreeContour contour, BlockPos startPos) {
 		int leafSpawn = height + 1;
-		float leafRadius = (girth - 1.0f) / 2.0f;
+		int leafRadius = (girth/2) + 1;
 
 		while (leafSpawn > girth - 1) {
-			FeatureHelper.generateCylinderFromTreeStartPos(level, leaf, startPos.offset(0, leafSpawn--, 0), girth, leafRadius + girth, 1, FeatureHelper.EnumReplaceMode.SOFT, contour);
+
+			float failChance = 0.3f;
+
+			if (leafSpawn >= height-1)
+				failChance = 0.6f;
+
+			if (leafSpawn == height+1)
+				failChance = 0.99f;
+
+			FeatureHelper.generateCylinderFromPosWithChance(level, leaf, startPos.offset(girth/2, leafSpawn--, girth/2), leafRadius, 2f, 1, FeatureHelper.EnumReplaceMode.SOFT, contour, rand, failChance);
 		}
 	}
 }
