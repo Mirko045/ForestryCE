@@ -26,23 +26,24 @@ public class FeatureBalsa extends FeatureTree {
 
 	@Override
 	protected void generateLeaves(LevelAccessor level, RandomSource rand, TreeBlockTypeLeaf leaf, TreeContour contour, BlockPos startPos) {
-		BlockPos topPos = startPos.offset(0, height + 1, 0);
-		BlockPos.MutableBlockPos leafCenter = new BlockPos.MutableBlockPos();
-		float leafRadius = (girth - 1.0f) / 2.0f;
 
-		FeatureHelper.addBlock(level, leafCenter.set(topPos), leaf, FeatureHelper.EnumReplaceMode.AIR, contour);
-		leafCenter.move(Direction.DOWN);
-		FeatureHelper.generateCylinderFromPos(level, leaf, leafCenter, leafRadius + girth, 1, FeatureHelper.EnumReplaceMode.SOFT, contour);
-		leafCenter.move(Direction.DOWN);
+		int leafRadius = (girth/2) + 1;
 
-		if (height > 10) {
-			FeatureHelper.generateCylinderFromPos(level, leaf, leafCenter, leafRadius + girth, 1, FeatureHelper.EnumReplaceMode.SOFT, contour);
-			leafCenter.move(Direction.DOWN);
+		float heightMult = (height/6f); //Taller trees have a longer canopy
+
+		int leafSpawn = height + 1;
+
+		FeatureHelper.generateCylinderFromPos(level, leaf, startPos.offset(girth/2, leafSpawn--, girth/2), girth/2f, 1, FeatureHelper.EnumReplaceMode.SOFT, contour);
+
+		int canopyLength = (int)Math.min(Math.max((4*heightMult), 4), 8);
+
+		while (canopyLength > 0) {
+
+			float failChance = 0.45f;
+			FeatureHelper.generateCylinderFromPosWithChance(level, leaf, startPos.offset(girth/2, leafSpawn--, girth/2), leafRadius, 2f, 1, FeatureHelper.EnumReplaceMode.SOFT, contour, rand, failChance);
+
+			canopyLength--;
 		}
 
-		while (leafCenter.getY() > topPos.getY() - 6) {
-			FeatureHelper.generateCylinderFromPos(level, leaf, leafCenter, leafRadius + girth, 1, FeatureHelper.EnumReplaceMode.SOFT, contour);
-			leafCenter.move(Direction.DOWN);
-		}
 	}
 }
