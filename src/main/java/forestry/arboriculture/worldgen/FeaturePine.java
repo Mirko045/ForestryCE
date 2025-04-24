@@ -23,37 +23,35 @@ import forestry.core.worldgen.FeatureHelper;
 public class FeaturePine extends FeatureTree {
 
 	public FeaturePine(ITreeGenData tree) {
-		super(tree, 6, 4);
+		super(tree, 11, 4);
 	}
 
 	@Override
 	public Set<BlockPos> generateTrunk(LevelAccessor level, RandomSource rand, TreeBlockTypeLog wood, BlockPos startPos) {
-		FeatureHelper.generateTreeTrunk(level, rand, wood, startPos, height, girth, 0, 0, null, 0);
-
-		Set<BlockPos> branchEnds = new HashSet<>();
-		for (int yBranch = 2; yBranch < height - 2; yBranch++) {
-			branchEnds.addAll(FeatureHelper.generateBranches(level, rand, wood, startPos.offset(0, yBranch, 0), girth, 0.05f, 0.1f, Math.round((height - yBranch) * 0.25f), 1, 0.25f));
-		}
-		return branchEnds;
+		return FeatureHelper.generateTreeTrunk(level, rand, wood, startPos, height, girth, 0, 0, null, 0);
 	}
 
 	@Override
 	protected void generateLeaves(LevelAccessor level, RandomSource rand, TreeBlockTypeLeaf leaf, TreeContour contour, BlockPos startPos) {
-		for (BlockPos branchEnd : contour.getBranchEnds()) {
-			FeatureHelper.generateCylinderFromPos(level, leaf, branchEnd, 2 + girth, 1, FeatureHelper.EnumReplaceMode.AIR, contour);
+
+
+
+		int vRadius = (int)(height*0.4f);
+
+		//Make the initial leaf body - this is mainly to make the point
+		FeatureHelper.generateEllipsoid(level, startPos.offset(girth/2, height-2, girth/2), 1+(girth/2f), vRadius, 1+(girth/2f), leaf, FeatureHelper.EnumReplaceMode.SOFT, contour );
+
+		//Make the 'layers'
+		int leafSpawn = height+1 ;
+		for (int y = 0; y < (vRadius*2)-6; y+=2){
+			FeatureHelper.generateEllipsoid(level, startPos.offset(girth/2, leafSpawn--, girth/2), 1+(girth/2f), 1, 1+(girth/2f), leaf, FeatureHelper.EnumReplaceMode.SOFT, contour );
+			FeatureHelper.generateEllipsoid(level, startPos.offset(girth/2, leafSpawn--, girth/2), 2+(girth/2f), 1, 2+(girth/2f), leaf, FeatureHelper.EnumReplaceMode.SOFT, contour );
 		}
 
-		int leafSpawn = height + 1;
-		float diameterchange = 1.25f / height;
-		int leafSpawned = 2;
+		//Add the last little ring at the base of the canopy
+		leafSpawn--;
+		FeatureHelper.generateEllipsoid(level, startPos.offset(girth/2, leafSpawn--, girth/2), 0.5f+(girth/2f), 1, 0.5f+(girth/2f), leaf, FeatureHelper.EnumReplaceMode.SOFT, contour );
+		FeatureHelper.generateEllipsoid(level, startPos.offset(girth/2, leafSpawn--, girth/2), 1+(girth/2f), 1, 1+(girth/2f), leaf, FeatureHelper.EnumReplaceMode.SOFT, contour );
 
-		FeatureHelper.generateCylinderFromTreeStartPos(level, leaf, startPos.offset(0, leafSpawn--, 0), girth, girth, 1, FeatureHelper.EnumReplaceMode.SOFT, contour);
-		FeatureHelper.generateCylinderFromTreeStartPos(level, leaf, startPos.offset(0, leafSpawn--, 0), girth, (float) 1 + girth, 1, FeatureHelper.EnumReplaceMode.SOFT, contour);
-
-		while (leafSpawn > 1) {
-			FeatureHelper.generateCylinderFromTreeStartPos(level, leaf, startPos.offset(0, leafSpawn--, 0), girth, 3 * diameterchange * leafSpawned + girth, 1, FeatureHelper.EnumReplaceMode.SOFT, contour);
-			FeatureHelper.generateCylinderFromTreeStartPos(level, leaf, startPos.offset(0, leafSpawn--, 0), girth, 2 * diameterchange * leafSpawned + girth, 1, FeatureHelper.EnumReplaceMode.SOFT, contour);
-			leafSpawned += 2;
-		}
 	}
 }
