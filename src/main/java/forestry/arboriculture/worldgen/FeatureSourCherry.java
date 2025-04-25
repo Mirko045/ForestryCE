@@ -53,8 +53,4 @@ public class FeatureSourCherry extends FeatureTree {
 			FeatureHelper.generateEllipsoid(level, branchEnd, 2, 1.75f,  2, 1.5f, leaf, FeatureHelper.EnumReplaceMode.SOFT, contour);
 		}
 	}
-
-	public void what(){
-		return;
-	}
 }
