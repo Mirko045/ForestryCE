@@ -14,7 +14,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelAccessor;
 
@@ -32,14 +31,14 @@ public class FeatureCamelthorn extends FeatureTree {
 
 		Set<BlockPos> branches = new HashSet<>();
 
-		FeatureHelper.generateSmartBranches(level, rand, wood, startPos.offset(0, height-3, 0), girth, 0.5f, 0.15f, 3, 1, 1);
+		FeatureHelper.generateBranches(level, rand, wood, startPos.offset(0, height-3, 0), girth, 0.5f, 0.15f, 3, 1, 1);
 
 		int y = height-5;
 
 		if (height > 7) {
 			while (y >= 3) {
 
-				branches.addAll(FeatureHelper.generateSmartBranches(level, rand, wood, startPos.offset(0, y, 0), girth, 0.25f, 0.3f, 3, 1, 0.5f));
+				branches.addAll(FeatureHelper.generateBranches(level, rand, wood, startPos.offset(0, y, 0), girth, 0.25f, 0.3f, 3, 1, 0.5f));
 
 				y -= rand.nextIntBetweenInclusive(3, 5);
 			}

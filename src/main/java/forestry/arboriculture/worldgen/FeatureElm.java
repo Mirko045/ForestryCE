@@ -10,13 +10,11 @@
  ******************************************************************************/
 package forestry.arboriculture.worldgen;
 
-import forestry.Forestry;
 import forestry.api.arboriculture.ITreeGenData;
 import forestry.core.worldgen.FeatureHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.levelgen.feature.Feature;
 
 import java.util.HashSet;
 import java.util.Set;

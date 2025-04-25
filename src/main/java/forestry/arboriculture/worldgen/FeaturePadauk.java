@@ -10,12 +10,9 @@
  ******************************************************************************/
 package forestry.arboriculture.worldgen;
 
-import java.util.Collections;
 import java.util.HashSet;
-import java.util.Random;
 import java.util.Set;
 
-import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelAccessor;
@@ -36,7 +33,7 @@ public class FeaturePadauk extends FeatureTree {
 		Set<BlockPos> branches = new HashSet<>();
 
 		while (branches.size() < 3) {
-			branches.addAll( FeatureHelper.generateSmartBranches(level, rand, wood, startPos.offset(0, height-1, 0), girth, 0.35f, 0.2f, 8, 1, 2 ) );
+			branches.addAll( FeatureHelper.generateBranches(level, rand, wood, startPos.offset(0, height-1, 0), girth, 0.35f, 0.2f, 8, 1, 2 ) );
 		}
 
 		return branches;

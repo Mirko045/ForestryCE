@@ -37,7 +37,7 @@ public class FeatureDogwood extends FeatureTree {
 			if (y > height/2)
 				branchRadius = (int)Math.max(2, branchRadius * 0.7f);
 
-			branchPos.addAll(FeatureHelper.generateSmartBranches(level, rand, wood, startPos.offset(0, y, 0), girth, 0.2f, 0.25f, branchRadius, 1, 0.5f));
+			branchPos.addAll(FeatureHelper.generateBranches(level, rand, wood, startPos.offset(0, y, 0), girth, 0.2f, 0.25f, branchRadius, 1, 0.5f));
 		}
 
 		return branchPos;
