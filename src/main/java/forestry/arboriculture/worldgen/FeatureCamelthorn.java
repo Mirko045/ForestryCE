@@ -21,27 +21,25 @@ import net.minecraft.world.level.LevelAccessor;
 import forestry.api.arboriculture.ITreeGenData;
 import forestry.core.worldgen.FeatureHelper;
 
-public class FeatureAcacia extends FeatureTree {
-	public FeatureAcacia(ITreeGenData tree) {
+public class FeatureCamelthorn extends FeatureTree {
+	public FeatureCamelthorn(ITreeGenData tree) {
 		super(tree, 5, 2);
 	}
 
 	@Override
 	public Set<BlockPos> generateTrunk(LevelAccessor level, RandomSource rand, TreeBlockTypeLog wood, BlockPos startPos) {
-		FeatureHelper.generateTreeTrunk(level, rand, wood, startPos, height - 3, girth, 0, 0, null, 0);
+		FeatureHelper.generateTreeTrunk(level, rand, wood, startPos, height - 2, girth, 0, 0, null, 0);
 
 		Set<BlockPos> branches = new HashSet<>();
 
-		for (Direction d: FeatureHelper.DirectionHelper.VALUES){
-			FeatureHelper.generateTreeTrunk(level, rand, wood, startPos.offset(0, height-3, 0 ), 3, girth, 0, 0, d, 3);
-		}
+		FeatureHelper.generateSmartBranches(level, rand, wood, startPos.offset(0, height-3, 0), girth, 0.5f, 0.15f, 3, 1, 1);
 
 		int y = height-5;
 
 		if (height > 7) {
 			while (y >= 3) {
 
-				branches.addAll(FeatureHelper.generateBranches(level, rand, wood, startPos.offset(0, y, 0), girth, 0.25f, 0.3f, 3, 1, 0.5f));
+				branches.addAll(FeatureHelper.generateSmartBranches(level, rand, wood, startPos.offset(0, y, 0), girth, 0.25f, 0.3f, 3, 1, 0.5f));
 
 				y -= rand.nextIntBetweenInclusive(3, 5);
 			}
@@ -59,7 +57,7 @@ public class FeatureAcacia extends FeatureTree {
 			float rad = (4f + (girth/1.5f)) * ( 1.2f-(1f/(y)) );
 			float radMult = 1.125f + (rand.nextFloat()/2f);
 
-			FeatureHelper.generateCylinderFromTreeStartPos(level, leaf, startPos.offset(0, height+2-y, 0), girth, rad, radMult, 1, FeatureHelper.EnumReplaceMode.SOFT, contour);
+			FeatureHelper.generateCylinderFromTreeStartPos(level, leaf, startPos.offset(0, height+1-y, 0), girth, rad, radMult, 1, FeatureHelper.EnumReplaceMode.SOFT, contour);
 		}
 
 		for (BlockPos blockPos: contour.getBranchEnds()) {
