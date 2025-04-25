@@ -36,4 +36,8 @@ public class TreeBlockTypeLog implements ITreeBlockType {
 	public boolean setBlock(LevelAccessor level, BlockPos pos) {
 		return this.tree.setLogBlock(this.genome, level, pos, this.facing);
 	}
+
+	public IGenome getGenome(){
+		return this.genome;
+	}
 }
