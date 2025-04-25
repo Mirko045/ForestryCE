@@ -11,6 +11,7 @@
 package forestry.arboriculture.worldgen;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
@@ -32,62 +33,24 @@ public class FeaturePadauk extends FeatureTree {
 	public Set<BlockPos> generateTrunk(LevelAccessor level, RandomSource rand, TreeBlockTypeLog wood, BlockPos startPos) {
 		FeatureHelper.generateTreeTrunk(level, rand, wood, startPos, height, girth, 0, 0, null, 0);
 
-		int branchSpawn = height - 2;
+		Set<BlockPos> branches = new HashSet<>();
 
-		int count = 0;
-		int max = 3;
-		int min = 1;
-		int canopyHeight = rand.nextInt(max - min + 1) + min;
-
-		while (branchSpawn > 3 && count < canopyHeight) {
-			count++;
-			//Random Trunk Branches
-			for (int i = 0; i < girth * 4; i++) {
-				if (rand.nextBoolean()) {
-
-					int[] offset = {-1, 1};
-					int offsetValue = offset[new Random().nextInt(offset.length)];
-					int maxBranchLength = 3;
-					int branchLength = new Random().nextInt(maxBranchLength + 1);
-					Direction[] direction = {Direction.NORTH, Direction.EAST};
-					Direction directionValue = direction[new Random().nextInt(direction.length)];
-					int branchSpawnY = branchSpawn;
-
-					for (int j = 1; j < branchLength + 1; j++) {
-						if (j == branchLength && rand.nextBoolean()) { //Just adding a bit of variation to the ends for character
-							branchSpawnY += 1;
-						}
-
-						wood.setDirection(directionValue);
-						if (directionValue == Direction.NORTH) {
-							FeatureHelper.addBlock(level, startPos.offset(0, branchSpawnY, j * offsetValue), wood, FeatureHelper.EnumReplaceMode.ALL);
-						} else if (directionValue == Direction.EAST) {
-							FeatureHelper.addBlock(level, startPos.offset(j * offsetValue, branchSpawnY, 0), wood, FeatureHelper.EnumReplaceMode.ALL);
-						}
-					}
-				}
-			}
+		while (branches.size() < 3) {
+			branches.addAll( FeatureHelper.generateSmartBranches(level, rand, wood, startPos.offset(0, height-1, 0), girth, 0.35f, 0.2f, 8, 1, 2 ) );
 		}
-		return Collections.emptySet();
+
+		return branches;
 	}
 
 	@Override
 	protected void generateLeaves(LevelAccessor level, RandomSource rand, TreeBlockTypeLeaf leaf, TreeContour contour, BlockPos startPos) {
-		int leafSpawn = height + 1;
 
-		FeatureHelper.generateCylinderFromTreeStartPos(level, leaf, startPos.offset(0, leafSpawn--, 0), girth, girth, 1, FeatureHelper.EnumReplaceMode.SOFT, contour);
-		FeatureHelper.generateCylinderFromTreeStartPos(level, leaf, startPos.offset(0, leafSpawn--, 0), girth, 1.5f + girth, 1, FeatureHelper.EnumReplaceMode.SOFT, contour);
-		FeatureHelper.generateCylinderFromTreeStartPos(level, leaf, startPos.offset(0, leafSpawn--, 0), girth, 3f + girth, 1, FeatureHelper.EnumReplaceMode.SOFT, contour);
+		for (BlockPos branchEnd: contour.getBranchEnds()){
 
-		int count = 0;
-		int max = 3;
-		int min = 1;
-		int canopyHeight = rand.nextInt(max - min + 1) + min;
+			FeatureHelper.generateCylinderFromPos(level, leaf, branchEnd.offset(0,1,0), 2, 1, FeatureHelper.EnumReplaceMode.SOFT, contour);
+			FeatureHelper.generateCylinderFromPos(level, leaf, branchEnd, 3, 1.5f, 1, FeatureHelper.EnumReplaceMode.SOFT, contour);
 
-		while (leafSpawn > 3 && count < canopyHeight) {
-			int yCenter = leafSpawn--;
-			FeatureHelper.generateCylinderFromTreeStartPos(level, leaf, startPos.offset(0, yCenter, 0), girth, 4.5f + girth, 1, FeatureHelper.EnumReplaceMode.SOFT, contour);
-			count++;
 		}
+
 	}
 }
