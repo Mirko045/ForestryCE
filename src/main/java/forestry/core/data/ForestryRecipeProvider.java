@@ -3,6 +3,9 @@ package forestry.core.data;
 import java.util.List;
 import java.util.function.Consumer;
 
+import forestry.api.arboriculture.*;
+import forestry.api.arboriculture.genetics.TreeLifeStage;
+import forestry.core.utils.SpeciesUtil;
 import net.minecraft.Util;
 import net.minecraft.core.NonNullList;
 import net.minecraft.data.recipes.FinishedRecipe;
@@ -33,10 +36,6 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 
 import forestry.api.ForestryTags;
-import forestry.api.arboriculture.IWoodAccess;
-import forestry.api.arboriculture.IWoodType;
-import forestry.api.arboriculture.TreeManager;
-import forestry.api.arboriculture.WoodBlockKind;
 import forestry.api.circuits.ICircuit;
 import forestry.apiculture.blocks.BlockAlveary;
 import forestry.apiculture.blocks.BlockAlvearyType;
@@ -628,6 +627,11 @@ public class ForestryRecipeProvider {
 		recipes.storage3x3(CoreBlocks.RESOURCE_STORAGE.get(EnumResourceType.APATITE), CoreItems.APATITE);
 		recipes.storage3x3(CoreBlocks.RESOURCE_STORAGE.get(EnumResourceType.BRONZE), CoreItems.INGOT_BRONZE);
 		recipes.storage3x3(CoreBlocks.RESOURCE_STORAGE.get(EnumResourceType.TIN), CoreItems.INGOT_TIN);
+		recipes.shapedCrafting(RecipeCategory.BUILDING_BLOCKS, CoreBlocks.RESOURCE_STORAGE.get(EnumResourceType.AMBER), recipe -> {
+			recipe.define('#', CoreItems.AMBER);
+			recipe.pattern("##");
+			recipe.pattern("##");
+		});
 		recipes.shapedCrafting(RecipeCategory.TOOLS, CoreItems.BRONZE_PICKAXE, recipe -> {
 			recipe.define('#', ForestryTags.Items.INGOTS_BRONZE);
 			recipe.define('X', Tags.Items.RODS_WOODEN);
@@ -1611,6 +1615,12 @@ public class ForestryRecipeProvider {
 				.product(0.6f, CoreItems.CRAFTING_MATERIALS.stack(EnumCraftingMaterial.SILK_WISP, 1))
 				.product(0.1f, ApicultureItems.PROPOLIS.stack(EnumPropolis.NORMAL, 1))
 				.build(consumer, id("centrifuge", "silky_propolis"));
+		new CentrifugeRecipeBuilder()
+				.setProcessingTime(180)
+				.setInput(Ingredient.of(ArboricultureItems.AMBER_SAPLING))
+				.product(0.25f, SpeciesUtil.TREE_TYPE.get().createStack(ForestryTreeSpecies.GINKGO, TreeLifeStage.SAPLING))
+				.product(0.8f, CoreItems.AMBER.stack())
+				.build(consumer, id("centrifuge", "amber_sapling"));
 	}
 
 	private static void registerFabricator(Consumer<FinishedRecipe> consumer) {

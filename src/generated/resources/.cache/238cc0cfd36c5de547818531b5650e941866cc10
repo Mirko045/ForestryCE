@@ -1,4 +1,4 @@
-// 1.20.1	2025-04-22T18:19:38.3038315	Tags for minecraft:item mod id forestry
+// 1.20.1	2025-04-27T23:01:07.2461592	Tags for minecraft:item mod id forestry
 37a390e7a402ae2ce1addd2b8bbefd6229e8c7c6 data/forestry/tags/items/acacia_desert_logs.json
 35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/forestry/tags/items/backpack/allow/adventurer.json
 426fdc880d77e5feaa70125d93a57b7ce21dbc2b data/forestry/tags/items/backpack/allow/builder.json
@@ -96,7 +96,8 @@ bb21d3539a79b0026a6f6669c4d05d2cf714868b data/forge/tags/items/ores.json
 7a5b77c21783e5fcfc69215d7ac0599936320d47 data/forge/tags/items/raw_materials.json
 8db3ceef4b7d718ce68f0c0d874f3b9144cf6658 data/forge/tags/items/raw_materials/tin.json
 e9507194391ca0e0eeef0dc3db67b1e3fde1ccb1 data/forge/tags/items/sawdust.json
-4a4bbf81047fffc4ff542b2befa22223566d4907 data/forge/tags/items/storage_blocks.json
+fdcc98a3a1492b2a5ba702cb1baa3c4dee37d705 data/forge/tags/items/storage_blocks.json
+7f299f5fe40240c3488786528143777b5c57f267 data/forge/tags/items/storage_blocks/amber.json
 fd9e00b1f00fab97ef5a20ca100e33e709036606 data/forge/tags/items/storage_blocks/apatite.json
 a50813a6215611330b9e7a32904eb8f174d3741a data/forge/tags/items/storage_blocks/bronze.json
 c74d64c654da6d15a76cd4167268fc9965ef23ca data/forge/tags/items/storage_blocks/charcoal.json
