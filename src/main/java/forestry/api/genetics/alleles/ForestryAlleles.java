@@ -55,6 +55,7 @@ public class ForestryAlleles {
 	public static final List<IIntegerAllele> DEFAULT_LIFESPANS = List.of(LIFESPAN_SHORTEST, LIFESPAN_SHORTER, LIFESPAN_SHORT, LIFESPAN_SHORTENED, LIFESPAN_NORMAL, LIFESPAN_ELONGATED, LIFESPAN_LONG, LIFESPAN_LONGER, LIFESPAN_LONGEST, LIFESPAN_IMMORTAL);
 
 	// Fertility
+	public static final IIntegerAllele FERTILITY_0 = REGISTRY.intAllele(0);
 	public static final IIntegerAllele FERTILITY_1 = REGISTRY.intAllele(1, true);
 	public static final IIntegerAllele FERTILITY_2 = REGISTRY.intAllele(2, true);
 	public static final IIntegerAllele FERTILITY_3 = REGISTRY.intAllele(3);
@@ -67,7 +68,7 @@ public class ForestryAlleles {
 	public static final IIntegerAllele FERTILITY_9 = REGISTRY.intAllele(9);
 	public static final IIntegerAllele FERTILITY_10 = REGISTRY.intAllele(10);
 
-	public static final List<IIntegerAllele> DEFAULT_BEE_FERTILITIES = List.of(FERTILITY_1, FERTILITY_2, FERTILITY_3, FERTILITY_4);
+	public static final List<IIntegerAllele> DEFAULT_BEE_FERTILITIES = List.of(FERTILITY_0, FERTILITY_1, FERTILITY_2, FERTILITY_3, FERTILITY_4);
 	public static final List<IIntegerAllele> DEFAULT_BUTTERFLY_FERTILITIES = List.of(FERTILITY_1, FERTILITY_2, FERTILITY_3, FERTILITY_4, FERTILITY_5, FERTILITY_6, FERTILITY_7, FERTILITY_8, FERTILITY_9, FERTILITY_10);
 
 	// Pollination
@@ -130,6 +131,7 @@ public class ForestryAlleles {
 	public static final IRegistryAllele<IFlowerType> FLOWER_TYPE_GOURD = REGISTRY.registryAllele(ForestryFlowerTypes.GOURD, BeeChromosomes.FLOWER_TYPE);
 	public static final IRegistryAllele<IFlowerType> FLOWER_TYPE_CAVE = REGISTRY.registryAllele(ForestryFlowerTypes.CAVE, BeeChromosomes.FLOWER_TYPE);
 	public static final IRegistryAllele<IFlowerType> FLOWER_TYPE_PHOTOSYNTHESIS = REGISTRY.registryAllele(ForestryFlowerTypes.PHOTOSYNTHESIS, BeeChromosomes.FLOWER_TYPE);
+	public static final IRegistryAllele<IFlowerType> FLOWER_TYPE_ANCIENT = REGISTRY.registryAllele(ForestryFlowerTypes.ANCIENT, BeeChromosomes.FLOWER_TYPE);
 	public static final IRegistryAllele<IFlowerType> FLOWER_TYPE_SEA = REGISTRY.registryAllele(ForestryFlowerTypes.SEA, BeeChromosomes.FLOWER_TYPE);
 	public static final IRegistryAllele<IFlowerType> FLOWER_TYPE_CORAL = REGISTRY.registryAllele(ForestryFlowerTypes.CORAL, BeeChromosomes.FLOWER_TYPE);
 	public static final IRegistryAllele<IFlowerType> FLOWER_TYPE_SCULK = REGISTRY.registryAllele(ForestryFlowerTypes.SCULK, BeeChromosomes.FLOWER_TYPE);
@@ -157,6 +159,8 @@ public class ForestryAlleles {
 	public static final IRegistryAllele<IBeeEffect> EFFECT_SIFTER = REGISTRY.registryAllele(ForestryBeeEffects.SIFTER, BeeChromosomes.EFFECT);
 	public static final IRegistryAllele<IBeeEffect> EFFECT_HAKUNA_MATATA = REGISTRY.registryAllele(ForestryBeeEffects.HAKUNA_MATATA, BeeChromosomes.EFFECT);
 	public static final IRegistryAllele<IBeeEffect> EFFECT_GLOW_BERRY_GROW = REGISTRY.registryAllele(ForestryBeeEffects.GLOW_BERRY_GROW, BeeChromosomes.EFFECT);
+	public static final IRegistryAllele<IBeeEffect> EFFECT_REJUVENATION = REGISTRY.registryAllele(ForestryBeeEffects.REJUVENATION, BeeChromosomes.EFFECT);
+	public static final IRegistryAllele<IBeeEffect> EFFECT_CHRONOPHAGE = REGISTRY.registryAllele(ForestryBeeEffects.CHRONOPHAGE, BeeChromosomes.EFFECT);
 	public static final IRegistryAllele<IBeeEffect> EFFECT_GUARDIAN = REGISTRY.registryAllele(ForestryBeeEffects.GUARDIAN, BeeChromosomes.EFFECT);
 	public static final IRegistryAllele<IBeeEffect> EFFECT_PHASING = REGISTRY.registryAllele(ForestryBeeEffects.PHASING, BeeChromosomes.EFFECT);
 	public static final IRegistryAllele<IBeeEffect> EFFECT_ASCENSION = REGISTRY.registryAllele(ForestryBeeEffects.ASCENSION, BeeChromosomes.EFFECT);

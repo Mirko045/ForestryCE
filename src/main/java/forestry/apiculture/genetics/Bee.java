@@ -376,6 +376,10 @@ public class Bee extends IndividualLiving<IBeeSpecies, IBee, IBeeSpeciesType> im
 			return null;
 		}
 
+		if (this.genome.getActiveValue(BeeChromosomes.FERTILITY) < 1) {
+			return null;
+		}
+
 		// Fatigued (dead ignoble) queens do not produce princesses.
 		if (!this.pristine) {
 			IBeeModifier beeModifier = IForestryApi.INSTANCE.getHiveManager().createBeeHousingModifier(housing);
@@ -397,6 +401,10 @@ public class Bee extends IndividualLiving<IBeeSpecies, IBee, IBeeSpeciesType> im
 	public List<IBee> spawnDrones(IBeeHousing housing) {
 		// We need a mated queen to produce offspring.
 		if (mate == null) {
+			return Collections.emptyList();
+		}
+
+		if (this.genome.getActiveValue(BeeChromosomes.FERTILITY) < 1) {
 			return Collections.emptyList();
 		}
 

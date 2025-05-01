@@ -115,9 +115,11 @@ public class ForestryTaxa {
 	public static final String GENUS_MONASTIC = "monapis";
 	public static final String GENUS_LUSH = "troglobites";
 	public static final String GENUS_KLEPTOPLASTIC = "phytapis";
+	public static final String GENUS_RELIC = "reliquia";
 	public static final String GENUS_AQUATIC = "spongiforma";
 	public static final String GENUS_EMBITTERED = "irata";
 	public static final String GENUS_ABOMINATION = "abominatio";
+	public static final String GENUS_VANILLA = "bombus";
 	// Tree Genera
 	public static final String GENUS_GINKGO = "ginkgo";
 	public static final String GENUS_COCOS = "cocos";
@@ -215,7 +217,7 @@ public class ForestryTaxa {
 	public static final String SPECIES_TROPICAL = "mendelia";
 	public static final String SPECIES_EXOTIC = "darwini";
 	public static final String SPECIES_EDENIC = "humboldti";
-	public static final String SPECIES_ENDED = "notchi";
+	public static final String SPECIES_ENDED = "mikui";
 	public static final String SPECIES_SPECTRAL = "idolum";
 	public static final String SPECIES_PHANTASMAL = "lemur";
 	public static final String SPECIES_WINTRY = "brumalis";
@@ -232,7 +234,7 @@ public class ForestryTaxa {
 	public static final String SPECIES_PATRIOTIC = "americanus";
 	public static final String SPECIES_RURAL = "rustico";
 	public static final String SPECIES_FARMERLY = "arator";
-	public static final String SPECIES_AGRARIAN = "arator";
+	public static final String SPECIES_AGRARIAN = "agrarius";
 	public static final String SPECIES_MARSHY = "adorasti";
 	public static final String SPECIES_MIRY = "humidium";
 	public static final String SPECIES_BOGGY = "paluster";
@@ -248,6 +250,9 @@ public class ForestryTaxa {
 	public static final String SPECIES_KLEPTOPLASTIC = "vitaraptor";
 	public static final String SPECIES_PHOTOSYNTHETIC = "phytomimus";
 	public static final String SPECIES_AUTOTROPHIC = "solaris";
+	public static final String SPECIES_PRIMEVAL = "antiqua";
+	public static final String SPECIES_ANACHRONE = "tempuraptor";
+	public static final String SPECIES_RELIC = "elizabethii";
 	public static final String SPECIES_AQUATIC = "squarepantsii";//a real species name
 	public static final String SPECIES_PIRATE = "pirata";
 	public static final String SPECIES_PRISMATIC = "orichalcus";
@@ -259,6 +264,7 @@ public class ForestryTaxa {
 	public static final String SPECIES_SHULKING = "shurukui";
 	public static final String SPECIES_ZOMBIFIED = "inmortui";
 	public static final String SPECIES_SCULK = "alieni";
+	public static final String SPECIES_VANILLA = "dinnerbonei";
 	// Tree Species
 	public static final String SPECIES_GINKGO = "bilboa";
 	public static final String SPECIES_COCONUT = "nucifera";

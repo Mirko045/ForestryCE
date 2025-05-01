@@ -109,14 +109,6 @@ dependencies {
 	// ModKit DEV ONLY
 	modImplementation 'com.github.thedarkcolour:ModKit:0302f9aa42'
 
-	// Mekanism (testing)
-	//def mekanism_version = '1.20.1-10.4.9.61'
-	//compileOnly "mekanism:Mekanism:${mekanism_version}:api"
-	//modRuntimeOnly "mekanism:Mekanism:${mekanism_version}" // Mekanism
-	//modRuntimeOnly "mekanism:Mekanism:${mekanism_version}:additions" // Mekanism: Additions
-	//modRuntimeOnly "mekanism:Mekanism:${mekanism_version}:generators" // Mekanism: Generators
-	//modRuntimeOnly "mekanism:Mekanism:${mekanism_version}:tools" // Mekanism: Tools
-
 	// DEV ONLY
 	compileOnly "org.jetbrains:annotations:23.0.0"
 }
@@ -146,8 +138,6 @@ idea.project.settings {
 }
 
 jar {
-	finalizedBy "reobfJar"
-
 	from sourceSets.main.output.classesDirs
 	from sourceSets.main.output.resourcesDir
 
@@ -270,7 +260,7 @@ if (System.getenv("CURSEFORGE_TOKEN")) {
 			addGameVersion("Forge")
 			addGameVersion("Java 17")
 
-			mainArtifact(jar.archiveFile) {
+			mainArtifact(reobfJar.archiveFile) {
 				displayName = "Forestry: Community Edition ${project.version}"
 				relations {
 					optionalDependency 'jei'
@@ -291,7 +281,7 @@ modrinth {
 	loaders = ["forge"]
 	changelog = getChangelog(project.version)
 
-	uploadFile = jar
+	uploadFile = reobfJar
 	additionalFiles.add(sourcesJar)
 	additionalFiles.add(apiJar)
 	additionalFiles.add(javadocJar)
