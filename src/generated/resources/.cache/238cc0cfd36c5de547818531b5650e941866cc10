@@ -1,4 +1,4 @@
-// 1.20.1	2025-04-27T23:01:07.2461592	Tags for minecraft:item mod id forestry
+// 1.20.1	2025-05-01T20:49:43.0024841	Tags for minecraft:item mod id forestry
 37a390e7a402ae2ce1addd2b8bbefd6229e8c7c6 data/forestry/tags/items/acacia_desert_logs.json
 35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/forestry/tags/items/backpack/allow/adventurer.json
 426fdc880d77e5feaa70125d93a57b7ce21dbc2b data/forestry/tags/items/backpack/allow/builder.json
@@ -86,6 +86,7 @@ a8c9d50fad9f4f5fadfdb5b0073b599dda9a140f data/forge/tags/items/gears/bronze.json
 246c3d963343027d30575bca49bede0d04d245b6 data/forge/tags/items/gears/copper.json
 35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/forge/tags/items/gears/stone.json
 febeaaa35d40f231aef3c816a93030bec346cd15 data/forge/tags/items/gears/tin.json
+6c213c91377790c6f0e879e77db66b8e603c6ee6 data/forge/tags/items/gems/amber.json
 7bf39f22a5d77c35935dff079b46fb0faf93bebb data/forge/tags/items/gems/apatite.json
 8b565f4d3966eef268a9a0bf81be893e0cb2c1f5 data/forge/tags/items/ingots.json
 23b9c8d2d2eba3c044b161396f97568f82616835 data/forge/tags/items/ingots/bronze.json
