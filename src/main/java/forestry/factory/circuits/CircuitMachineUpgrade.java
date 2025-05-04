@@ -11,21 +11,23 @@
 package forestry.factory.circuits;
 
 import forestry.core.circuits.Circuit;
-import forestry.core.circuits.ISpeedUpgradable;
+import forestry.core.circuits.IMachineUpgradable;
 
-public class CircuitSpeedUpgrade extends Circuit {
+public class CircuitMachineUpgrade extends Circuit {
 	private final double speedBoost;
 	private final float powerDraw;
+	private final float outputMult;
 
-	public CircuitSpeedUpgrade(String id, double speedBoost, float powerDraw) {
+	public CircuitMachineUpgrade(String id, double speedBoost, float powerDraw, float outputMult) {
 		super(id);
 		this.speedBoost = speedBoost;
 		this.powerDraw = powerDraw;
+		this.outputMult = outputMult;
 	}
 
 	@Override
 	public boolean isCircuitable(Object tile) {
-		return tile instanceof ISpeedUpgradable;
+		return tile instanceof IMachineUpgradable;
 	}
 
 	@Override
@@ -33,8 +35,8 @@ public class CircuitSpeedUpgrade extends Circuit {
 		if (!isCircuitable(tile)) {
 			return;
 		}
-		if (tile instanceof ISpeedUpgradable machine) {
-			machine.applySpeedUpgrade(speedBoost, powerDraw);
+		if (tile instanceof IMachineUpgradable machine) {
+			machine.applyMachineUpgrade(speedBoost, powerDraw, outputMult);
 		}
 	}
 
@@ -48,8 +50,8 @@ public class CircuitSpeedUpgrade extends Circuit {
 		if (!isCircuitable(tile)) {
 			return;
 		}
-		if (tile instanceof ISpeedUpgradable machine) {
-			machine.applySpeedUpgrade(-speedBoost, -powerDraw);
+		if (tile instanceof IMachineUpgradable machine) {
+			machine.removeMachineUpgrade(speedBoost, powerDraw, outputMult);
 		}
 	}
 

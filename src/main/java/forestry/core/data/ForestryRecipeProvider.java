@@ -1554,7 +1554,8 @@ public class ForestryRecipeProvider {
 				.setProcessingTime(20)
 				.setInput(Ingredient.of(ApicultureItems.BEE_COMBS.get(EnumHoneyComb.SIMMERING)))
 				.product(1.0f, CoreItems.CRAFTING_MATERIALS.stack(EnumCraftingMaterial.REFRACTORY_WAX))
-				.product(0.7f, ApicultureItems.HONEY_DROP.stack()).product(0.7f, ApicultureItems.PROPOLIS.stack(EnumPropolis.VOLCANIC, 1))
+				.product(0.7f, ApicultureItems.HONEY_DROP.stack())
+				.product(0.7f, ApicultureItems.PROPOLIS.stack(EnumPropolis.VOLCANIC, 1))
 				.build(consumer, id("centrifuge", "simmering_comb"));
 		new CentrifugeRecipeBuilder()
 				.setProcessingTime(20)

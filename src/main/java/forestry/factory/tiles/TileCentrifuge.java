@@ -14,6 +14,7 @@ import javax.annotation.Nullable;
 import java.util.ArrayDeque;
 import java.util.Collection;
 
+import forestry.Forestry;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.ListTag;
@@ -137,7 +138,7 @@ public class TileCentrifuge extends TilePowered implements ISocketable, WorldlyC
 		}
 
 		// We are done, add products to queue
-		Collection<ItemStack> products = currentRecipe.getProducts(level.random);
+		Collection<ItemStack> products = currentRecipe.getProducts(level.random, outputMultiplier);
 		pendingProducts.addAll(products);
 
 		//Add Item to preview slot.
