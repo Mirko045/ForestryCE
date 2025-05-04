@@ -1,7 +1,7 @@
 {
   "type": "forestry:centrifuge",
   "input": {
-    "item": "forestry:amber_sapling"
+    "item": "forestry:amber_drone"
   },
   "products": [
     {
