@@ -3,6 +3,8 @@ package forestry.core.data;
 import java.util.List;
 import java.util.function.Consumer;
 
+import forestry.api.apiculture.ForestryBeeSpecies;
+import forestry.api.apiculture.genetics.BeeLifeStage;
 import forestry.api.arboriculture.*;
 import forestry.api.arboriculture.genetics.TreeLifeStage;
 import forestry.core.utils.SpeciesUtil;
@@ -1633,6 +1635,7 @@ public class ForestryRecipeProvider {
 				.setInput(Ingredient.of(ApicultureItems.BEE_COMBS.get(EnumHoneyComb.VINTAGE)))
 				.product(1.0f, CoreItems.CRAFTING_MATERIALS.get(EnumCraftingMaterial.BEESWAX).stack())
 				.product(0.9f, ApicultureItems.HONEYDEW.stack())
+				.product(0.5f, CoreItems.AMBER.stack())
 				.build(consumer, id("centrifuge", "vintage_comb"));
 		new CentrifugeRecipeBuilder()
 				.setProcessingTime(20)
@@ -1658,6 +1661,12 @@ public class ForestryRecipeProvider {
 				.product(0.25f, SpeciesUtil.TREE_TYPE.get().createStack(ForestryTreeSpecies.GINKGO, TreeLifeStage.SAPLING))
 				.product(0.8f, CoreItems.AMBER.stack())
 				.build(consumer, id("centrifuge", "amber_sapling"));
+		new CentrifugeRecipeBuilder()
+				.setProcessingTime(180)
+				.setInput(Ingredient.of(ArboricultureItems.AMBER_SAPLING))
+				.product(0.25f, SpeciesUtil.BEE_TYPE.get().createStack(ForestryBeeSpecies.RELIC, BeeLifeStage.DRONE))
+				.product(0.8f, CoreItems.AMBER.stack())
+				.build(consumer, id("centrifuge", "amber_drone"));
 	}
 
 	private static void registerFabricator(Consumer<FinishedRecipe> consumer) {
