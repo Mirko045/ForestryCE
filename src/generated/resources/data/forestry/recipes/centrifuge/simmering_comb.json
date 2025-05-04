@@ -11,6 +11,10 @@
     {
       "chance": 0.7,
       "item": "forestry:honey_drop"
+    },
+    {
+      "chance": 0.7,
+      "item": "forestry:propolis_volcanic"
     }
   ],
   "time": 20
