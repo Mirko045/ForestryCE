@@ -1,4 +1,4 @@
-// 1.20.1	2025-05-01T20:49:43.0024841	Tags for minecraft:item mod id forestry
+// 1.20.1	2025-05-04T12:55:58.4257941	Tags for minecraft:item mod id forestry
 37a390e7a402ae2ce1addd2b8bbefd6229e8c7c6 data/forestry/tags/items/acacia_desert_logs.json
 35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/forestry/tags/items/backpack/allow/adventurer.json
 426fdc880d77e5feaa70125d93a57b7ce21dbc2b data/forestry/tags/items/backpack/allow/builder.json
@@ -20,7 +20,7 @@ d38d236618a81cc1b2e0dbb4e4d7c11e43e522ea data/forestry/tags/items/balsa_logs.jso
 5708d00e89da0df1404605668ffb2f3bac650c6d data/forestry/tags/items/citrus_logs.json
 a7c007c7c6e32a913007fb71d57b7071baca9550 data/forestry/tags/items/cocobolo_logs.json
 ec05b08625146b4e77deed7315d01a8d763d4826 data/forestry/tags/items/coconut_logs.json
-c022146dda687f603494a7253cd554caca9ac67a data/forestry/tags/items/combs.json
+77e6e82cbd197e941029a9371b7cb6b9bc96a818 data/forestry/tags/items/combs.json
 9f5d66e4017fbcabe22c6702e93310cf271fe042 data/forestry/tags/items/crafting_tables.json
 79ca239d94ae1173b7a7945044442b6de7f626ee data/forestry/tags/items/dogwood_logs.json
 0065fbab36f74fb846e11c84e9d0bfd535b7c25e data/forestry/tags/items/drop_honey.json
@@ -53,12 +53,12 @@ ea20483a3e76bbda72b8c42731b58a91b37ab13c data/forestry/tags/items/pear_logs.json
 24f3c0c5b75c3d2795315ab535de9a7cb30879c0 data/forestry/tags/items/pine_logs.json
 57a3ddceb21b169b8704e697fd89e03ac1c75cef data/forestry/tags/items/plum_logs.json
 1e2ec9fb02b1b3126fa83d7bc90fe335db9e48b6 data/forestry/tags/items/poplar_logs.json
-794cdff7b3d1a97e7cec2815b209d867bf747502 data/forestry/tags/items/propolis.json
+d013a58efdcf5f8209c8db9f75ede3023e29dde4 data/forestry/tags/items/propolis.json
 cf0c5a0245a3eeb822d88e53776905fa468d455c data/forestry/tags/items/scoops.json
 5001373d3cdbe55ab238e1c82b521698c299e190 data/forestry/tags/items/sequoia_logs.json
 c0020e6f377758179d2d7f23812e757851ba1ff2 data/forestry/tags/items/stamps.json
 ff349380d39ea7002699d10ebb9251ed0391aacb data/forestry/tags/items/teak_logs.json
-c022146dda687f603494a7253cd554caca9ac67a data/forestry/tags/items/village_combs.json
+77e6e82cbd197e941029a9371b7cb6b9bc96a818 data/forestry/tags/items/village_combs.json
 d9e9f6592978ba94c81b01dce5b81632ca41c1b9 data/forestry/tags/items/walnut_logs.json
 71e425f9d7f490e0890cb29ce3f2d76f1e4b47c3 data/forestry/tags/items/wenge_logs.json
 713d7fd8e1bbf78f27a8e1239e8149f901295a29 data/forestry/tags/items/willow_logs.json

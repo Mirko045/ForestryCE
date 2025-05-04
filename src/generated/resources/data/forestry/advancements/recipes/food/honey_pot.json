@@ -5,7 +5,9 @@
       "conditions": {
         "items": [
           {
-            "tag": "forge:string"
+            "items": [
+              "forestry:honey_drop"
+            ]
           }
         ]
       },
@@ -13,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "forestry:beeswax_candles"
+        "recipe": "forestry:honey_pot"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -26,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "forestry:beeswax_candles"
+      "forestry:honey_pot"
     ]
   },
   "sends_telemetry_event": true
