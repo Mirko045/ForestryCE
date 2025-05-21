@@ -10,6 +10,8 @@
  ******************************************************************************/
 package forestry.core.items;
 
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BoneMealItem;
 import net.minecraft.world.item.ItemStack;
@@ -39,7 +41,7 @@ public class ItemFertilizer extends ItemForestry {
 
 		if (BoneMealItem.applyBonemeal(heldItem, worldIn, pos, player)) {
 			if (!worldIn.isClientSide) {
-				worldIn.levelEvent(2005, pos, 0);
+					worldIn.levelEvent(1505, pos, 0);
 			}
 
 			return InteractionResult.SUCCESS;
