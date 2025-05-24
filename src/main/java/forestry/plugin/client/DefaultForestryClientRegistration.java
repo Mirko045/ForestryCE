@@ -63,7 +63,7 @@ public class DefaultForestryClientRegistration implements Consumer<IClientRegist
 		client.setLeafSprite(ForestryTreeSpecies.SEQUOIA, ForestryLeafSprites.SPRUCE);
 		client.setLeafSprite(ForestryTreeSpecies.GIANT_SEQUOIA, ForestryLeafSprites.SPRUCE);
 		client.setLeafSprite(ForestryTreeSpecies.TEAK, ForestryLeafSprites.JUNGLE);
-		client.setLeafSprite(ForestryTreeSpecies.IPE, ForestryLeafSprites.JUNGLE);
+		client.setLeafSprite(ForestryTreeSpecies.IPE, ForestryLeafSprites.IPE);
 		client.setLeafSprite(ForestryTreeSpecies.KAPOK, ForestryLeafSprites.JUNGLE);
 		client.setLeafSprite(ForestryTreeSpecies.EBONY, ForestryLeafSprites.JUNGLE);
 		client.setLeafSprite(ForestryTreeSpecies.ZEBRAWOOD, ForestryLeafSprites.JUNGLE);
@@ -106,6 +106,7 @@ public class DefaultForestryClientRegistration implements Consumer<IClientRegist
 
 		client.setLeafTint(ForestryTreeSpecies.DOGWOOD, FixedLeafTint.NONE);
 		client.setLeafTint(ForestryTreeSpecies.JACARANDA, FixedLeafTint.NONE);
+		client.setLeafTint(ForestryTreeSpecies.IPE, FixedLeafTint.NONE);
 	}
 
 	private static void registerSapling(IClientRegistration registration, String modId, ResourceLocation speciesId) {
