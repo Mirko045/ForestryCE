@@ -10,16 +10,13 @@
  ******************************************************************************/
 package forestry.arboriculture.worldgen;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
+import forestry.api.arboriculture.ITreeGenData;
+import forestry.core.worldgen.FeatureHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelAccessor;
 
-import forestry.api.arboriculture.ITreeGenData;
-import forestry.core.worldgen.FeatureHelper;
+import java.util.List;
 
 public class FeatureTeak extends FeatureTree {
 
@@ -29,39 +26,39 @@ public class FeatureTeak extends FeatureTree {
 
 	@Override
 	public void generateTrunk(LevelAccessor level, List<BlockPos> logOrigins, List<BlockPos> branchCoords, RandomSource rand, TreeBlockTypeLog wood, BlockPos startPos) {
-		FeatureHelper.generateTreeTrunk(level, logOrigins, rand, wood, startPos, height, girth, 0, 0, null, 0);
+		FeatureHelper.generateTreeTrunk(level, logOrigins, rand, wood, startPos, this.height, this.girth, 0, 0, null, 0);
 
-		int branchWidth = (height / 3)-1;
+		int branchWidth = (this.height / 3)-1;
 
-		if (height > 4)
-        	branchCoords.addAll(FeatureHelper.generateBranches(level, rand, wood, startPos.offset(0, height - 3, 0), girth, 0.2f, 0.33f, branchWidth, 1, 0.5f));
+		if (this.height > 4)
+        	branchCoords.addAll(FeatureHelper.generateBranches(level, rand, wood, startPos.offset(0, this.height - 3, 0), this.girth, 0.2f, 0.33f, branchWidth, 1, 0.5f));
 
-		if (height > 6)
-			branchCoords.addAll(FeatureHelper.generateBranches(level, rand, wood, startPos.offset(0, height - 5, 0), girth, 0.2f, 0.2f, branchWidth, 1, 0.75f));
+		if (this.height > 6)
+			branchCoords.addAll(FeatureHelper.generateBranches(level, rand, wood, startPos.offset(0, this.height - 5, 0), this.girth, 0.2f, 0.2f, branchWidth, 1, 0.75f));
 
 	}
 
 	@Override
 	protected void generateLeaves(LevelAccessor level, RandomSource rand, TreeBlockTypeLeaf leaf, TreeContour contour, BlockPos startPos) {
 
-		float r = 3 + (girth/2f);
+		float r = 3 + (this.girth/2f);
 		float ri = r/2;
 
-		FeatureHelper.generateEllipsoid(level,startPos.offset(girth/2, height+1,girth/2), ri, 1.5f, ri, 1.5f, leaf, FeatureHelper.EnumReplaceMode.SOFT, contour);
+		FeatureHelper.generateEllipsoid(level,startPos.offset(this.girth/2, this.height+1,this.girth/2), ri, 1.5f, ri, 1.5f, leaf, FeatureHelper.EnumReplaceMode.SOFT, contour);
 
 
-		int leafSpawn = height;
+		int leafSpawn = this.height;
 
 		float radMult = 1.5f;
 
-		while (leafSpawn >= (height/5)*3  ){
+		while (leafSpawn >= (this.height/5)*3  ){
 
 			radMult /= 2;
 			if (radMult <= 0.05f) break;
 
 			float ro = r * (1-radMult);
 
-			FeatureHelper.generateEllipsoid(level,startPos.offset((girth/2), leafSpawn--,(girth/2)), ro, 1.5f, ro, 1.5f, leaf, FeatureHelper.EnumReplaceMode.SOFT, contour);
+			FeatureHelper.generateEllipsoid(level,startPos.offset((this.girth/2), leafSpawn--,(this.girth/2)), ro, 1.5f, ro, 1.5f, leaf, FeatureHelper.EnumReplaceMode.SOFT, contour);
 
 		}
 

@@ -1,16 +1,15 @@
 package forestry.core.worldgen;
 
-import javax.annotation.Nullable;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 import forestry.Forestry;
 import forestry.api.genetics.alleles.TreeChromosomes;
 import forestry.arboriculture.ForestryWoodType;
 import forestry.arboriculture.features.ArboricultureBlocks;
 import forestry.arboriculture.worldgen.TreeBlockTypeLog;
+import forestry.api.arboriculture.ITreeGenData;
+import forestry.arboriculture.worldgen.ITreeBlockType;
+import forestry.arboriculture.worldgen.TreeBlockType;
+import forestry.arboriculture.worldgen.TreeContour;
+import forestry.core.utils.VecUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Vec3i;
@@ -23,13 +22,12 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.VineBlock;
 import net.minecraft.world.level.block.state.BlockState;
-
-import forestry.api.arboriculture.ITreeGenData;
-import forestry.arboriculture.worldgen.ITreeBlockType;
-import forestry.arboriculture.worldgen.TreeBlockType;
-import forestry.arboriculture.worldgen.TreeContour;
-import forestry.core.utils.VecUtil;
 import net.minecraft.world.phys.Vec3;
+
+import javax.annotation.Nullable;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class FeatureHelper {
 	public static boolean addBlock(LevelAccessor world, BlockPos pos, ITreeBlockType type, EnumReplaceMode replaceMode) {
@@ -625,18 +623,21 @@ public class FeatureHelper {
 	}
 
 	public static class DirectionHelper {
-
-		public static final Direction[] VALUES = new Direction[]{Direction.NORTH, Direction.SOUTH, Direction.EAST, Direction.WEST};
+		// Indices correspond to 3D Data Value of direction
+		private static final Direction[] VALUES = new Direction[]{Direction.NORTH, Direction.SOUTH, Direction.WEST, Direction.EAST};
 
 		public static Direction getRandom(RandomSource random) {
 			return VALUES[random.nextInt(VALUES.length)];
 		}
 
 		public static Direction getRandomOther(RandomSource random, Direction direction) {
-			List<Direction> directions = Arrays.asList(VALUES);
-			directions.remove(direction);
-			int size = directions.size();
-			return directions.toArray(new Direction[size])[random.nextInt(size)];
+			// exclude the direction by index
+			int exclude = direction.get3DDataValue() - 2;
+			int choice = random.nextInt(3);
+			if (choice >= exclude) {
+				choice++;
+			}
+			return VALUES[choice];
 		}
 	}
 }

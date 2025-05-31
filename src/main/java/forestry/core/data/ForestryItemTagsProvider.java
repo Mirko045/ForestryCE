@@ -1,23 +1,21 @@
 package forestry.core.data;
 
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
-
-import net.minecraftforge.common.Tags;
-
 import forestry.api.ForestryTags;
 import forestry.apiculture.features.ApicultureItems;
 import forestry.arboriculture.ForestryWoodType;
+import forestry.arboriculture.VanillaWoodType;
 import forestry.arboriculture.features.ArboricultureBlocks;
 import forestry.arboriculture.features.ArboricultureItems;
 import forestry.core.features.CoreItems;
 import forestry.core.items.ItemFruit;
 import forestry.core.items.definitions.EnumCraftingMaterial;
 import forestry.mail.features.MailItems;
-
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
+import net.minecraftforge.common.Tags;
 import thedarkcolour.modkit.data.MKTagsProvider;
 
 public class ForestryItemTagsProvider {
@@ -32,6 +30,10 @@ public class ForestryItemTagsProvider {
 		tags.copy(BlockTags.LOGS_THAT_BURN, ItemTags.LOGS_THAT_BURN);
 		for (ForestryWoodType type : ForestryWoodType.VALUES) {
 			tags.copy(type.blockTag, type.itemTag);
+			tags.copy(type.fireproofBlockTag, type.fireproofItemTag);
+		}
+		for (VanillaWoodType type : VanillaWoodType.VALUES) {
+			tags.copy(type.fireproofBlockTag, type.fireproofItemTag);
 		}
 		tags.tag(ItemTags.NON_FLAMMABLE_WOOD).add(ArboricultureBlocks.PLANKS_FIREPROOF.getItems().toArray(Item[]::new));
 		tags.tag(ItemTags.NON_FLAMMABLE_WOOD).add(ArboricultureBlocks.SLABS_FIREPROOF.getItems().toArray(Item[]::new));
@@ -127,15 +129,21 @@ public class ForestryItemTagsProvider {
 		tags.tag(ForestryTags.Items.SAWDUST).add(CoreItems.CRAFTING_MATERIALS.item(EnumCraftingMaterial.WOOD_PULP));
 
 		tags.tag(ForestryTags.Items.CRAFTING_TABLES)
-				.addOptionalTag(new ResourceLocation("c", "player_workstations/crafting_tables"))
-				.addOptionalTag(new ResourceLocation("c", "workbenches"))
-				.addOptionalTag(new ResourceLocation("c", "workbench"))
-				.add(Items.CRAFTING_TABLE);
+			.addOptionalTag(new ResourceLocation("c", "player_workstations/crafting_tables"))
+			.addOptionalTag(new ResourceLocation("c", "workbenches"))
+			.addOptionalTag(new ResourceLocation("c", "workbench"))
+			.add(Items.CRAFTING_TABLE);
 
 		tags.tag(ForestryTags.Items.SCOOPS).add(ApicultureItems.SCOOP.item());
 
 		tags.tag(ForestryTags.Items.BEES).add(ApicultureItems.BEE_DRONE.get(), ApicultureItems.BEE_PRINCESS.get(), ApicultureItems.BEE_QUEEN.get(), ApicultureItems.BEE_LARVAE.get());
 		tags.tag(ItemTags.BOATS).add(ArboricultureItems.BOAT.itemArray());
 		tags.tag(ItemTags.CHEST_BOATS).add(ArboricultureItems.CHEST_BOAT.itemArray());
+
+		tags.tag(ItemTags.CLUSTER_MAX_HARVESTABLES).add(CoreItems.BRONZE_PICKAXE);
+		tags.tag(ItemTags.PICKAXES).add(CoreItems.BRONZE_PICKAXE);
+		tags.tag(ItemTags.SHOVELS).add(CoreItems.BRONZE_SHOVEL);
+
+		tags.tag("curios:head").add(CoreItems.SPECTACLES);
 	}
 }

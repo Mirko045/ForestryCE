@@ -1,27 +1,24 @@
 package forestry.core.data;
 
-import java.util.concurrent.CompletableFuture;
-
-import net.minecraft.core.HolderLookup;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.data.DataGenerator;
-import net.minecraft.data.PackOutput;
-
-import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.data.event.GatherDataEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-
-import net.minecraftforge.fml.common.Mod;
-
 import forestry.api.ForestryConstants;
 import forestry.api.IForestryApi;
 import forestry.apiimpl.plugin.PluginManager;
 import forestry.core.data.models.ForestryBlockStateProvider;
 import forestry.core.data.models.ForestryItemModelProvider;
 import forestry.core.data.models.ForestryWoodModelProvider;
+import forestry.core.data.recipe.ForestryRecipeProvider;
 import forestry.modules.ForestryModuleManager;
-
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
+import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.data.event.GatherDataEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 import thedarkcolour.modkit.data.DataHelper;
+
+import java.util.concurrent.CompletableFuture;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class Data {
@@ -56,6 +53,7 @@ public class Data {
 		generator.addProvider(event.includeClient(), new ForestryItemModelProvider(output, existingFileHelper));
 		generator.addProvider(event.includeClient(), new ForestryAtlasProvider(output, existingFileHelper));
 		generator.addProvider(event.includeServer(), new ForestryFeaturesProvider(output, lookup));
+		generator.addProvider(event.includeClient(), new ForestryCuriosProvider(output, existingFileHelper, lookup));
 	}
 
 	// Hack fix to make API work in data generation environment

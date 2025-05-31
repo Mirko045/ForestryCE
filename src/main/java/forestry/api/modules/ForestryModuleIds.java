@@ -1,8 +1,7 @@
 package forestry.api.modules;
 
-import net.minecraft.resources.ResourceLocation;
-
 import forestry.api.ForestryConstants;
+import net.minecraft.resources.ResourceLocation;
 
 /**
  * All modules added by base Forestry.
@@ -22,4 +21,5 @@ public class ForestryModuleIds {
 	public static final ResourceLocation SORTING = ForestryConstants.forestry("sorting");
 	public static final ResourceLocation CULTIVATION = ForestryConstants.forestry("cultivation");
 	public static final ResourceLocation WORKTABLE = ForestryConstants.forestry("worktable");
+	public static final ResourceLocation CURIOS = ForestryConstants.forestry("curios");
 }

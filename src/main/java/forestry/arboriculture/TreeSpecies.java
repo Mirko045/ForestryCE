@@ -1,21 +1,5 @@
 package forestry.arboriculture;
 
-import java.util.List;
-
-import net.minecraft.ChatFormatting;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.RandomSource;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.LeavesBlock;
-import net.minecraft.world.level.block.state.BlockState;
-
 import forestry.api.arboriculture.ITreeGenerator;
 import forestry.api.arboriculture.ITreeSpecies;
 import forestry.api.arboriculture.genetics.ITree;
@@ -30,13 +14,28 @@ import forestry.api.genetics.alleles.ForestryAlleles;
 import forestry.api.genetics.alleles.TreeChromosomes;
 import forestry.api.plugin.ITreeSpeciesBuilder;
 import forestry.arboriculture.blocks.BlockDefaultLeavesFruit;
+import forestry.arboriculture.blocks.BlockExtendedLeaves;
 import forestry.arboriculture.features.ArboricultureBlocks;
 import forestry.arboriculture.genetics.Tree;
 import forestry.arboriculture.genetics.TreeGrowthHelper;
 import forestry.arboriculture.tiles.TileLeaves;
 import forestry.core.genetics.Species;
-
+import net.minecraft.ChatFormatting;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.LeavesBlock;
+import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class TreeSpecies extends Species<ITreeSpeciesType, ITree> implements ITreeSpecies {
 	private final TemperatureType temperature;
@@ -134,11 +133,11 @@ public class TreeSpecies extends Species<ITreeSpeciesType, ITree> implements ITr
 		addHybridTooltip(tooltip, genome, TreeChromosomes.SPECIES, "for.trees.hybrid");
 
 		Component saplingsAndMaturation = Component.literal("S: ").append(genome.getActiveName(TreeChromosomes.SAPLINGS)).append(", ").withStyle(ChatFormatting.YELLOW)
-				.append(Component.literal("M: ").append(genome.getActiveName(TreeChromosomes.MATURATION)).withStyle(ChatFormatting.RED));
+			.append(Component.literal("M: ").append(genome.getActiveName(TreeChromosomes.MATURATION)).withStyle(ChatFormatting.RED));
 		Component heightAndGirth = Component.literal("H: ").append(genome.getActiveName(TreeChromosomes.HEIGHT)).append(", ").withStyle(ChatFormatting.LIGHT_PURPLE)
-				.append(Component.literal("G: ").append(genome.getActiveName(TreeChromosomes.GIRTH)).withStyle(ChatFormatting.AQUA));
+			.append(Component.literal("G: ").append(genome.getActiveName(TreeChromosomes.GIRTH)).withStyle(ChatFormatting.AQUA));
 		Component yieldAndSappiness = Component.literal("Y: ").append(genome.getActiveName(TreeChromosomes.YIELD)).append(", ").withStyle(ChatFormatting.WHITE)
-				.append(Component.literal("S: ").append(genome.getActiveName(TreeChromosomes.SAPPINESS)).withStyle(ChatFormatting.GOLD));
+			.append(Component.literal("S: ").append(genome.getActiveName(TreeChromosomes.SAPPINESS)).withStyle(ChatFormatting.GOLD));
 		tooltip.add(saplingsAndMaturation);
 		tooltip.add(heightAndGirth);
 		tooltip.add(yieldAndSappiness);
@@ -179,7 +178,9 @@ public class TreeSpecies extends Species<ITreeSpeciesType, ITree> implements ITr
 	@Override
 	public boolean setLeaves(IGenome genome, LevelAccessor level, BlockPos pos, RandomSource random, boolean convertBlockEntity) {
 		if (convertBlockEntity) {
-			BlockState state = LeavesBlock.updateDistance(ArboricultureBlocks.LEAVES.defaultState(), level, pos);
+			// assume all generated leaves are properly supported
+			BlockState state = LeavesBlock.updateDistance(ArboricultureBlocks.LEAVES.defaultState(), level, pos)
+				.setValue(BlockExtendedLeaves.SUPPORTED, true);
 			boolean wasFruit = isFruitLeaf(level, pos);
 			boolean placed = level.setBlock(pos, state, 19);
 

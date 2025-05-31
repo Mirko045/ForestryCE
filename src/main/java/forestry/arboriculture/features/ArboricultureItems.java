@@ -7,12 +7,7 @@ import forestry.arboriculture.items.ItemForestryBoat;
 import forestry.arboriculture.items.ItemGermlingGE;
 import forestry.arboriculture.items.ItemGrafter;
 import forestry.core.items.ItemForestry;
-import forestry.modules.features.FeatureGroup;
-import forestry.modules.features.FeatureItem;
-import forestry.modules.features.FeatureItemGroup;
-import forestry.modules.features.FeatureProvider;
-import forestry.modules.features.IFeatureRegistry;
-import forestry.modules.features.ModFeatureRegistry;
+import forestry.modules.features.*;
 
 @FeatureProvider
 public class ArboricultureItems {

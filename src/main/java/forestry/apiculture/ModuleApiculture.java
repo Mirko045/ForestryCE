@@ -10,30 +10,7 @@
  ******************************************************************************/
 package forestry.apiculture;
 
-import java.util.function.Consumer;
-
-import net.minecraft.commands.CommandSourceStack;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.alchemy.PotionUtils;
-import net.minecraft.world.item.alchemy.Potions;
-import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.level.storage.loot.BuiltInLootTables;
-import net.minecraft.world.level.storage.loot.LootPool;
-import net.minecraft.world.level.storage.loot.entries.LootItem;
-import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
-
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
-
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
-import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
-import net.minecraftforge.event.LootTableLoadEvent;
-import net.minecraftforge.eventbus.api.IEventBus;
-
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-
 import forestry.api.apiculture.BeeManager;
 import forestry.api.apiculture.ForestryBeeSpecies;
 import forestry.api.apiculture.IArmorApiarist;
@@ -56,6 +33,24 @@ import forestry.core.data.LootTableHelper;
 import forestry.core.network.PacketIdClient;
 import forestry.core.utils.SpeciesUtil;
 import forestry.modules.BlankForestryModule;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.PotionUtils;
+import net.minecraft.world.item.alchemy.Potions;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.storage.loot.BuiltInLootTables;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
+import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
+import net.minecraftforge.event.LootTableLoadEvent;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+
+import java.util.function.Consumer;
 
 @ForestryModule
 public class ModuleApiculture extends BlankForestryModule {
@@ -85,13 +80,13 @@ public class ModuleApiculture extends BlankForestryModule {
 	private static void onCommonSetup(FMLCommonSetupEvent event) {
 		// BREWING RECIPES
 		BrewingRecipeRegistry.addRecipe(
-				Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD)),
-				Ingredient.of(ApicultureItems.POLLEN_CLUSTER.stack(EnumPollenCluster.NORMAL, 1)),
-				PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.HEALING));
+			Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD)),
+			Ingredient.of(ApicultureItems.POLLEN_CLUSTER.stack(EnumPollenCluster.NORMAL, 1)),
+			PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.HEALING));
 		BrewingRecipeRegistry.addRecipe(
-				Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD)),
-				Ingredient.of(ApicultureItems.POLLEN_CLUSTER.stack(EnumPollenCluster.CRYSTALLINE, 1)),
-				PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.REGENERATION));
+			Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD)),
+			Ingredient.of(ApicultureItems.POLLEN_CLUSTER.stack(EnumPollenCluster.CRYSTALLINE, 1)),
+			PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.REGENERATION));
 	}
 
 	private static void registerCapabilities(RegisterCapabilitiesEvent event) {
@@ -126,69 +121,6 @@ public class ModuleApiculture extends BlankForestryModule {
 	public void setupApi() {
 		BeeManager.armorApiaristHelper = new ArmorApiaristHelper();
 	}
-
-/*
-
-	// todo replace with tags "acceptable flowers," "plantable flowers," where plantable is subset of acceptable
-	private void initFlowerRegistry() {
-		FlowerRegistry flowerRegistry = (FlowerRegistry) FlowerManager.flowerRegistry;
-
-		flowerRegistry.registerAcceptableFlowerRule(new EndFlowerAcceptableRule(), FlowerManager.FlowerTypeEnd);
-
-		// Register acceptable plants
-		flowerRegistry.registerAcceptableFlower(Blocks.DRAGON_EGG, FlowerManager.FlowerTypeEnd);
-		flowerRegistry.registerAcceptableFlower(Blocks.CHORUS_PLANT, FlowerManager.FlowerTypeEnd);
-		flowerRegistry.registerAcceptableFlower(Blocks.CHORUS_FLOWER, FlowerManager.FlowerTypeEnd);
-		flowerRegistry.registerAcceptableFlower(Blocks.VINE, FlowerManager.FlowerTypeJungle);
-		flowerRegistry.registerAcceptableFlower(Blocks.FERN, FlowerManager.FlowerTypeJungle);
-		flowerRegistry.registerAcceptableFlower(Blocks.WHEAT, FlowerManager.FlowerTypeWheat);
-		flowerRegistry.registerAcceptableFlower(Blocks.PUMPKIN_STEM, FlowerManager.FlowerTypeGourd);
-		flowerRegistry.registerAcceptableFlower(Blocks.MELON_STEM, FlowerManager.FlowerTypeGourd);
-		flowerRegistry.registerAcceptableFlower(Blocks.NETHER_WART, FlowerManager.FlowerTypeNether);
-		flowerRegistry.registerAcceptableFlower(Blocks.CACTUS, FlowerManager.FlowerTypeCacti);
-
-		Block[] standardFlowers = new Block[]{
-				Blocks.DANDELION,
-				Blocks.POPPY,
-				Blocks.BLUE_ORCHID,
-				Blocks.ALLIUM,
-				Blocks.AZURE_BLUET,
-				Blocks.RED_TULIP,
-				Blocks.ORANGE_TULIP,
-				Blocks.WHITE_TULIP,
-				Blocks.PINK_TULIP,
-				Blocks.OXEYE_DAISY,
-				Blocks.CORNFLOWER,
-				Blocks.WITHER_ROSE,
-				Blocks.LILY_OF_THE_VALLEY,
-		};
-		Block[] pottedStandardFlowers = new Block[]{
-				Blocks.POTTED_POPPY,
-				Blocks.POTTED_BLUE_ORCHID,
-				Blocks.POTTED_ALLIUM,
-				Blocks.POTTED_AZURE_BLUET,
-				Blocks.POTTED_RED_TULIP,
-				Blocks.POTTED_ORANGE_TULIP,
-				Blocks.POTTED_WHITE_TULIP,
-				Blocks.POTTED_PINK_TULIP,
-				Blocks.POTTED_OXEYE_DAISY,
-				Blocks.POTTED_CORNFLOWER,
-				Blocks.POTTED_LILY_OF_THE_VALLEY,
-				Blocks.POTTED_WITHER_ROSE,
-		};
-
-
-		//Flower Pots
-		for (Block standardFlower : pottedStandardFlowers) {
-			flowerRegistry.registerAcceptableFlower(standardFlower, standardTypes);
-		}
-
-		flowerRegistry.registerAcceptableFlower(Blocks.POTTED_RED_MUSHROOM, FlowerManager.FlowerTypeMushrooms);
-		flowerRegistry.registerAcceptableFlower(Blocks.POTTED_BROWN_MUSHROOM, FlowerManager.FlowerTypeMushrooms);
-
-		flowerRegistry.registerAcceptableFlower(Blocks.POTTED_CACTUS, FlowerManager.FlowerTypeCacti);
-	}
-*/
 
 	@Override
 	public void registerPackets(IPacketRegistry registry) {

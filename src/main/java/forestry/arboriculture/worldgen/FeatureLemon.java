@@ -10,16 +10,13 @@
  ******************************************************************************/
 package forestry.arboriculture.worldgen;
 
+import forestry.api.arboriculture.ITreeGenData;
+import forestry.core.worldgen.FeatureHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelAccessor;
 
-import forestry.api.arboriculture.ITreeGenData;
-import forestry.core.worldgen.FeatureHelper;
-
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class FeatureLemon extends FeatureTree {
 
@@ -30,12 +27,12 @@ public class FeatureLemon extends FeatureTree {
 	//Generation code has been copy-pasted from Orange trees, which is fine because they're so closely related.
 	@Override
 	public void generateTrunk(LevelAccessor level, List<BlockPos> logOrigins, List<BlockPos> branchCoords, RandomSource rand, TreeBlockTypeLog wood, BlockPos startPos) {
-		FeatureHelper.generateTreeTrunk(level, logOrigins, rand, wood, startPos, height, girth, 0, 0, null, 0);
+		FeatureHelper.generateTreeTrunk(level, logOrigins, rand, wood, startPos, this.height, this.girth, 0, 0, null, 0);
 
 
-		int branchSpawn = height - 1;
+		int branchSpawn = this.height - 1;
 		int branchCount = 1;
-		float heightIncreasePercent = height/3f;
+		float heightIncreasePercent = this.height/3f;
 
 
 		do {
@@ -46,14 +43,14 @@ public class FeatureLemon extends FeatureTree {
 
 			branchCoords.addAll(FeatureHelper.generateBranches(level, rand, wood,
 					startPos.offset(0, branchSpawn, 0),
-					girth,
+				this.girth,
 					0.4f, 0.15f,
-					(girth/3)+(int)(branchCount * (1 + (heightIncreasePercent-1))),
+					(this.girth/3)+(int)(branchCount * (1 + (heightIncreasePercent-1))),
 					2, branchChance));
 			branchCount++;
 			branchSpawn-=2;
 
-			if (branchSpawn < 4 && branchCount == 2 && height > 6) branchSpawn = 4;
+			if (branchSpawn < 4 && branchCount == 2 && this.height > 6) branchSpawn = 4;
 		} while (branchSpawn >= 4);
 
 	}
@@ -61,12 +58,12 @@ public class FeatureLemon extends FeatureTree {
 	@Override
 	protected void generateLeaves(LevelAccessor level, RandomSource rand, TreeBlockTypeLeaf leaf, TreeContour contour, BlockPos startPos) {
 
-		float heightIncreasePercent = height/3f;
+		float heightIncreasePercent = this.height/3f;
 
-		float radius = (float)Math.ceil(girth/1.5f)+1;
-		FeatureHelper.generateEllipsoid(level, startPos.offset(girth/2, height-(int)heightIncreasePercent, girth/2), radius, 1.5f+ Math.min(heightIncreasePercent-1, 1)  , radius, 1.75f, leaf, FeatureHelper.EnumReplaceMode.SOFT, contour);
+		float radius = (float)Math.ceil(this.girth/1.5f)+1;
+		FeatureHelper.generateEllipsoid(level, startPos.offset(this.girth/2, this.height-(int)heightIncreasePercent, girth/2), radius, 1.5f+ Math.min(heightIncreasePercent-1, 1)  , radius, 1.75f, leaf, FeatureHelper.EnumReplaceMode.SOFT, contour);
 
-		FeatureHelper.generateEllipsoid(level, startPos.offset(girth/2, height-(int)heightIncreasePercent, girth/2), radius, heightIncreasePercent, radius, 1.75f, leaf, FeatureHelper.EnumReplaceMode.SOFT, contour);
+		FeatureHelper.generateEllipsoid(level, startPos.offset(this.girth/2, this.height-(int)heightIncreasePercent, girth/2), radius, heightIncreasePercent, radius, 1.75f, leaf, FeatureHelper.EnumReplaceMode.SOFT, contour);
 
 		for (BlockPos branchEnd: contour.getBranchEnds()){
 			FeatureHelper.generateCylinderFromPos(level, leaf, branchEnd, heightIncreasePercent+0.5f, 1f, 1+(int)heightIncreasePercent, FeatureHelper.EnumReplaceMode.SOFT, contour);

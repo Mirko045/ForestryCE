@@ -10,15 +10,13 @@
  ******************************************************************************/
 package forestry.arboriculture.worldgen;
 
-import java.util.HashSet;
-import java.util.Set;
-
+import forestry.api.arboriculture.ITreeGenData;
+import forestry.core.worldgen.FeatureHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelAccessor;
 
-import forestry.api.arboriculture.ITreeGenData;
-import forestry.core.worldgen.FeatureHelper;
+import java.util.List;
 
 public class FeaturePine extends FeatureTree {
 

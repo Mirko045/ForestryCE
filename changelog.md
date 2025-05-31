@@ -1,3 +1,32 @@
+## Forestry 2.6.1
+- Fixed Research Notes voiding items when used in the offhand (#222)
+- Fix tags for Survivalist tools (#221)
+- Fix bees using Overworld time in dimensions without a daylight cycle, like Nether and End (#223)
+- Add missing Fermenter recipes (#231)
+- Accommodate Amendments's janky Mixins that print snarky log messages about other mods causing bugs (#192)
+- Allow equipping Spectacles in Curios head slot (#224)
+- Add missing stamp recipes to Carpenter (#228)
+- Fix Vanilla fireproof log tags being empty (#237)
+- Fix worldgen crash caused by Undermod biomes (#229)
+- Add config options to forestry-server.toml to disable Apatite and Tin generation (#108)
+- Fix incorrect fruit leaves rendering when fast graphics is enabled (#159)
+- Fix missing Patchouli pages (#125)
+
+## Forestry 2.6.0
+- Fixed planks recipes for all wood types, now able to craft planks from stripped logs (#227)
+- Fix beeswax not waxing Copper blocks or Signs
+- Fix vanilla fireproof logs and wood not being strippable
+- Allow right-clicking wood with Refractory Wax to make it fireproof (#89)
+- Make crafting fireproof logs and planks cheaper in the Thermionic Fabricator (#89)
+- Fix Willow leaves decaying upon spawn (#232)
+- Allow data-driven tree generation through new "forestry:custom_tree" feature, which accepts a "genome" field (#216)
+  - To override existing tree generation, disable Forestry's tree generation in its server config file. Then, add your desired tree features.
+- Fix inconsistent tree generation by using the world gen random source rather than the world random
+- Fix potential crash from Desert Acacia generation
+
+## Forestry 2.5.4
+- Fixed incompatibility with ModernFix
+
 ## Forestry 2.5.3
 - Fences no longer attach to decorative leaves (#172)
 - Deepslate Tin and Apatite now use correct sounds (#209)
@@ -5,6 +34,8 @@
 - Fix Error Ledgers being covered by JEI bookmarks (#204)
 - Allow bees to pollinate potted flowers (#163)
 - Fix unsafe direct Level usage in HiveDecorator (#197)
+- Fix regression with Bee House not extending lifespan to 3x like in old versions
+- Add Vanilla bee species, obtained by right-clicking a Vanilla bee entity with a scoop
 
 ## Forestry 2.5.2
 - Fix hybrids not producing drops of inactive species

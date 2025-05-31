@@ -10,21 +10,19 @@
  ******************************************************************************/
 package forestry.core.genetics;
 
-import javax.annotation.OverridingMethodsMustInvokeSuper;
-import java.util.Optional;
-
-import net.minecraft.util.Mth;
-import net.minecraft.world.level.Level;
-
 import com.mojang.datafixers.Products;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-
 import forestry.api.genetics.IGenome;
 import forestry.api.genetics.IIndividualLiving;
 import forestry.api.genetics.ISpecies;
 import forestry.api.genetics.ISpeciesType;
 import forestry.api.genetics.alleles.IIntegerChromosome;
+import net.minecraft.util.Mth;
+import net.minecraft.world.level.Level;
+
+import javax.annotation.OverridingMethodsMustInvokeSuper;
+import java.util.Optional;
 
 public abstract class IndividualLiving<S extends ISpecies<I>, I extends IIndividualLiving, T extends ISpeciesType<S, I>> extends Individual<S, I, T> implements IIndividualLiving {
 	protected int health;
@@ -49,8 +47,8 @@ public abstract class IndividualLiving<S extends ISpecies<I>, I extends IIndivid
 	// For "inheritance" in codecs
 	protected static <I extends IIndividualLiving> Products.P5<RecordCodecBuilder.Mu<I>, IGenome, Optional<IGenome>, Boolean, Integer, Integer> livingFields(RecordCodecBuilder.Instance<I> instance, Codec<IGenome> genomeCodec) {
 		return Individual.fields(instance, genomeCodec).and(instance.group(
-				Codec.INT.fieldOf("health").forGetter(I::getHealth),
-				Codec.INT.fieldOf("max_heath").forGetter(I::getMaxHealth)
+			Codec.INT.fieldOf("health").forGetter(I::getHealth),
+			Codec.INT.fieldOf("max_heath").forGetter(I::getMaxHealth)
 		));
 	}
 
@@ -59,12 +57,12 @@ public abstract class IndividualLiving<S extends ISpecies<I>, I extends IIndivid
 	/* GENERATION */
 	@Override
 	public boolean isAlive() {
-		return health > 0;
+		return this.health > 0;
 	}
 
 	@Override
 	public int getHealth() {
-		return health;
+		return this.health;
 	}
 
 	@Override
@@ -83,18 +81,18 @@ public abstract class IndividualLiving<S extends ISpecies<I>, I extends IIndivid
 			setHealth(0);
 			return;
 		}
-		// don't age, skip division by zero later down the line
+		// don't age
 		if (ageStep == 0f) {
 			return;
 		}
 
-		float ageModifier = ageStep;
-
-		while (ageModifier > 1.0f) {
+		// whole number of aging steps
+		while (ageStep > 1.0f) {
 			decreaseHealth();
-			ageModifier--;
+			ageStep--;
 		}
-		if (level.random.nextFloat() < ageModifier) {
+		// percentage chance to age again
+		if (level.random.nextFloat() < ageStep) {
 			decreaseHealth();
 		}
 	}
@@ -110,8 +108,8 @@ public abstract class IndividualLiving<S extends ISpecies<I>, I extends IIndivid
 	}
 
 	private void decreaseHealth() {
-		if (health > 0) {
-			setHealth(health - 1);
+		if (this.health > 0) {
+			setHealth(this.health - 1);
 		}
 	}
 }

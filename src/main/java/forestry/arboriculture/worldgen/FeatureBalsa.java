@@ -10,13 +10,11 @@
  ******************************************************************************/
 package forestry.arboriculture.worldgen;
 
-import net.minecraft.core.Direction;
+import forestry.api.arboriculture.ITreeGenData;
+import forestry.core.worldgen.FeatureHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelAccessor;
-
-import forestry.api.arboriculture.ITreeGenData;
-import forestry.core.worldgen.FeatureHelper;
 
 public class FeatureBalsa extends FeatureTree {
 
@@ -27,20 +25,20 @@ public class FeatureBalsa extends FeatureTree {
 	@Override
 	protected void generateLeaves(LevelAccessor level, RandomSource rand, TreeBlockTypeLeaf leaf, TreeContour contour, BlockPos startPos) {
 
-		int leafRadius = (girth/2) + 1;
+		int leafRadius = (this.girth/2) + 1;
 
-		float heightMult = (height/6f); //Taller trees have a longer canopy
+		float heightMult = (this.height/6f); //Taller trees have a longer canopy
 
-		int leafSpawn = height + 1;
+		int leafSpawn = this.height + 1;
 
-		FeatureHelper.generateCylinderFromPos(level, leaf, startPos.offset(girth/2, leafSpawn--, girth/2), girth/2f, 1, FeatureHelper.EnumReplaceMode.SOFT, contour);
+		FeatureHelper.generateCylinderFromPos(level, leaf, startPos.offset(this.girth/2, leafSpawn--, this.girth/2), this.girth/2f, 1, FeatureHelper.EnumReplaceMode.SOFT, contour);
 
 		int canopyLength = (int)Math.min(Math.max((4*heightMult), 4), 8);
 
 		while (canopyLength > 0) {
 
 			float failChance = 0.45f;
-			FeatureHelper.generateCylinderFromPosWithChance(level, leaf, startPos.offset(girth/2, leafSpawn--, girth/2), leafRadius, 2f, 1, FeatureHelper.EnumReplaceMode.SOFT, contour, rand, failChance);
+			FeatureHelper.generateCylinderFromPosWithChance(level, leaf, startPos.offset(this.girth/2, leafSpawn--, this.girth/2), leafRadius, 2f, 1, FeatureHelper.EnumReplaceMode.SOFT, contour, rand, failChance);
 
 			canopyLength--;
 		}

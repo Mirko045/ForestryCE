@@ -10,13 +10,12 @@
  ******************************************************************************/
 package forestry.arboriculture.commands;
 
+import forestry.api.arboriculture.genetics.ITree;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
-
-import forestry.api.arboriculture.genetics.ITree;
 
 public class ForestSpawner implements ITreeSpawner {
 	@Override
@@ -33,7 +32,7 @@ public class ForestSpawner implements ITreeSpawner {
 			int spawnZ = z + level.random.nextInt(32) - 16;
 			BlockPos pos = new BlockPos(spawnX, y, spawnZ);
 
-			TreeGenHelper.generateTree(tree.getSpecies(), level, pos);
+			TreeGenHelper.generateTree(tree.getSpecies(), null, level, level.getRandom(), pos);
 		}
 
 		return 1;

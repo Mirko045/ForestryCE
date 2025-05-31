@@ -1,25 +1,6 @@
-/*******************************************************************************
- * Copyright 2011-2014 SirSengir
- *
- * This work (the API) is licensed under the "MIT" License, see LICENSE.txt for details.
- ******************************************************************************/
 package forestry.arboriculture;
 
-import java.util.Locale;
-import java.util.stream.Stream;
-
-import net.minecraft.core.BlockPos;
-import net.minecraft.tags.TagKey;
-import net.minecraft.util.RandomSource;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.BlockSetType;
-import net.minecraft.world.level.block.state.properties.WoodType;
-
 import com.mojang.authlib.GameProfile;
-
 import forestry.api.ForestryConstants;
 import forestry.api.ForestryTags;
 import forestry.api.arboriculture.IWoodType;
@@ -30,8 +11,19 @@ import forestry.arboriculture.blocks.ForestryLeafType;
 import forestry.arboriculture.features.ArboricultureBlocks;
 import forestry.modules.features.FeatureBlock;
 import forestry.modules.features.FeatureBlockGroup;
-
+import net.minecraft.core.BlockPos;
+import net.minecraft.tags.TagKey;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockSetType;
+import net.minecraft.world.level.block.state.properties.WoodType;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.Locale;
+import java.util.stream.Stream;
 
 public enum ForestryWoodType implements IWoodType {
 	LARCH(ForestryLeafType.LARCH),
@@ -91,6 +83,8 @@ public enum ForestryWoodType implements IWoodType {
 	private final WoodType type;
 	public final TagKey<Block> blockTag;
 	public final TagKey<Item> itemTag;
+	public final TagKey<Block> fireproofBlockTag;
+	public final TagKey<Item> fireproofItemTag;
 
 	ForestryWoodType(ForestryLeafType leafType) {
 		this(leafType, DEFAULT_HARDNESS);
@@ -105,6 +99,8 @@ public enum ForestryWoodType implements IWoodType {
 
 		this.blockTag = ForestryTags.blockTag(this.name + "_logs");
 		this.itemTag = ForestryTags.itemTag(this.name + "_logs");
+		this.fireproofBlockTag = ForestryTags.blockTag("fireproof_" + this.name + "_logs");
+		this.fireproofItemTag = ForestryTags.itemTag("fireproof_" + this.name + "_logs");
 	}
 
 	@Override
@@ -154,19 +150,19 @@ public enum ForestryWoodType implements IWoodType {
 
 	public Stream<FeatureBlock<?, ?>> getBurnables() {
 		return Stream.of(
-				ArboricultureBlocks.LOGS.get(this),
-				ArboricultureBlocks.WOOD.get(this),
-				ArboricultureBlocks.STRIPPED_LOGS.get(this),
-				ArboricultureBlocks.STRIPPED_WOOD.get(this)
+			ArboricultureBlocks.LOGS.get(this),
+			ArboricultureBlocks.WOOD.get(this),
+			ArboricultureBlocks.STRIPPED_LOGS.get(this),
+			ArboricultureBlocks.STRIPPED_WOOD.get(this)
 		);
 	}
 
 	public Stream<FeatureBlock<?, ?>> getFireproof() {
 		return Stream.of(
-				ArboricultureBlocks.LOGS_FIREPROOF.get(this),
-				ArboricultureBlocks.WOOD_FIREPROOF.get(this),
-				ArboricultureBlocks.STRIPPED_LOGS_FIREPROOF.get(this),
-				ArboricultureBlocks.STRIPPED_WOOD_FIREPROOF.get(this)
+			ArboricultureBlocks.LOGS_FIREPROOF.get(this),
+			ArboricultureBlocks.WOOD_FIREPROOF.get(this),
+			ArboricultureBlocks.STRIPPED_LOGS_FIREPROOF.get(this),
+			ArboricultureBlocks.STRIPPED_WOOD_FIREPROOF.get(this)
 		);
 	}
 }

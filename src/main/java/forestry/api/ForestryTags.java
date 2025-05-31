@@ -1,5 +1,6 @@
 package forestry.api;
 
+import forestry.arboriculture.ForestryWoodType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -10,9 +11,6 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Fluid;
-
-import forestry.arboriculture.ForestryWoodType;
-
 import org.jetbrains.annotations.ApiStatus;
 
 public class ForestryTags {
@@ -35,6 +33,7 @@ public class ForestryTags {
 
 		public static final TagKey<Block> STORAGE_BLOCKS_RAW_TIN = forgeTag("storage_blocks/raw_tin");
 
+		// todo remove in favor of directly using IWoodAccess
 		public static final TagKey<Block> LARCH_LOGS = ForestryWoodType.LARCH.blockTag;
 		public static final TagKey<Block> TEAK_LOGS = ForestryWoodType.TEAK.blockTag;
 		public static final TagKey<Block> ACACIA_DESERT_LOGS = ForestryWoodType.ACACIA_DESERT.blockTag;

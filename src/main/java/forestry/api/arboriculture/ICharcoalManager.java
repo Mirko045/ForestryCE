@@ -1,27 +1,25 @@
-/*******************************************************************************
- * Copyright 2011-2014 SirSengir
- *
- * This work (the API) is licensed under the "MIT" License, see LICENSE.txt for details.
- ******************************************************************************/
 package forestry.api.arboriculture;
-
-import javax.annotation.Nullable;
-import java.util.Collection;
-import java.util.List;
 
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
+import javax.annotation.Nullable;
+import java.util.List;
+
 /**
  * Provides functions that are related to the forestry charcoal pile.
  */
+@Deprecated
 public interface ICharcoalManager {
 	/**
 	 * Registers the given block as a valid block for the charcoal pile wall and adds the given charcoal amount to it.
 	 * <p>
 	 * This method unlike {@link #registerWall(BlockState, int)} ignores the metadata of the actual block and
 	 * only compares the world block with the given block.
+	 *
+	 * @deprecated Use {@link forestry.api.plugin.IArboricultureRegistration#registerCharcoalPitWall}
 	 */
+	@Deprecated(forRemoval = true)
 	void registerWall(Block block, int amount);
 
 	/**
@@ -29,12 +27,18 @@ public interface ICharcoalManager {
 	 * <p>
 	 * This method unlike {@link #registerWall(Block, int)} compares the world state with the given state and not
 	 * only the block.
+	 *
+	 * @deprecated Use {@link forestry.api.plugin.IArboricultureRegistration#registerCharcoalPitWall}
 	 */
+	@Deprecated(forRemoval = true)
 	void registerWall(BlockState blockState, int amount);
 
 	/**
 	 * Registers your implementation of the {@link ICharcoalPileWall} interface.
+	 *
+	 * @deprecated Use {@link forestry.api.plugin.IArboricultureRegistration#registerCharcoalPitWall}
 	 */
+	@Deprecated(forRemoval = true)
 	void registerWall(ICharcoalPileWall wall);
 
 	@Nullable
@@ -45,7 +49,9 @@ public interface ICharcoalManager {
 	 * {@link #removeWall(BlockState)} is preferred.
 	 *
 	 * @return true if the wall was removed.
+	 * @deprecated Use {@link forestry.api.plugin.IArboricultureRegistration#registerCharcoalPitWall} and set to 0
 	 */
+	@Deprecated(forRemoval = true)
 	boolean removeWall(Block block);
 
 	/**
@@ -53,7 +59,9 @@ public interface ICharcoalManager {
 	 *
 	 * @param state the blockstate to remove.
 	 * @return true if the wall was removed.
+	 * @deprecated Use {@link forestry.api.plugin.IArboricultureRegistration#registerCharcoalPitWall} and set to 0
 	 */
+	@Deprecated(forRemoval = true)
 	boolean removeWall(BlockState state);
 
 	/**

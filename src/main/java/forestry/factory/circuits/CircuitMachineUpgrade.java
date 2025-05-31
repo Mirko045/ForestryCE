@@ -36,7 +36,7 @@ public class CircuitMachineUpgrade extends Circuit {
 			return;
 		}
 		if (tile instanceof IMachineUpgradable machine) {
-			machine.applyMachineUpgrade(speedBoost, powerDraw, outputMult);
+			machine.applyMachineUpgrade(this.speedBoost, this.powerDraw, this.outputMult);
 		}
 	}
 
@@ -51,7 +51,7 @@ public class CircuitMachineUpgrade extends Circuit {
 			return;
 		}
 		if (tile instanceof IMachineUpgradable machine) {
-			machine.removeMachineUpgrade(speedBoost, powerDraw, outputMult);
+			machine.removeMachineUpgrade(this.speedBoost, this.powerDraw, this.outputMult);
 		}
 	}
 

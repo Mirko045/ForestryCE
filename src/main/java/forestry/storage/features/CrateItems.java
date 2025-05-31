@@ -1,12 +1,5 @@
 package forestry.storage.features;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.level.ItemLike;
-
 import forestry.api.modules.ForestryModuleIds;
 import forestry.apiculture.features.ApicultureItems;
 import forestry.apiculture.items.EnumHoneyComb;
@@ -15,12 +8,14 @@ import forestry.apiculture.items.EnumPropolis;
 import forestry.core.features.CoreBlocks;
 import forestry.core.features.CoreItems;
 import forestry.core.items.definitions.EnumCraftingMaterial;
-import forestry.modules.features.FeatureItem;
-import forestry.modules.features.FeatureItemGroup;
-import forestry.modules.features.FeatureProvider;
-import forestry.modules.features.IFeatureRegistry;
-import forestry.modules.features.ModFeatureRegistry;
+import forestry.modules.features.*;
 import forestry.storage.items.ItemCrated;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.ItemLike;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @FeatureProvider
 public class CrateItems {
@@ -93,8 +88,8 @@ public class CrateItems {
 	public static final FeatureItem<ItemCrated> CRATED_ACACIA_SAPLING = register(Items.ACACIA_SAPLING, "crated_acacia_sapling");
 	public static final FeatureItem<ItemCrated> CRATED_DARK_OAK_SAPLING = register(Items.DARK_OAK_SAPLING, "crated_dark_oak_sapling");
 
-	public static final FeatureItem<ItemCrated> CRATED_BEESWAX = register(CoreItems.CRAFTING_MATERIALS.get(EnumCraftingMaterial.BEESWAX), "crated_beeswax");
-	public static final FeatureItem<ItemCrated> CRATED_REFRACTORY_WAX = register(CoreItems.CRAFTING_MATERIALS.get(EnumCraftingMaterial.REFRACTORY_WAX), "crated_refractory_wax");
+	public static final FeatureItem<ItemCrated> CRATED_BEESWAX = register(CoreItems.BEESWAX, "crated_beeswax");
+	public static final FeatureItem<ItemCrated> CRATED_REFRACTORY_WAX = register(CoreItems.REFRACTORY_WAX, "crated_refractory_wax");
 
 	// Apiculture
 	public static final FeatureItem<ItemCrated> CRATED_POLLEN_CLUSTER_NORMAL = register(ApicultureItems.POLLEN_CLUSTER.get(EnumPollenCluster.NORMAL), "crated_pollen_cluster_normal");

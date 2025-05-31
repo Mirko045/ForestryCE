@@ -16,6 +16,12 @@ import forestry.arboriculture.ForestryWoodType;
 import forestry.arboriculture.VanillaWoodType;
 import forestry.arboriculture.blocks.ForestryLeafType;
 import forestry.arboriculture.features.ArboricultureBlocks;
+import forestry.arboriculture.worldgen.*;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Blocks;
+
+import java.awt.*;
 
 import static forestry.api.genetics.ForestryTaxa.*;
 

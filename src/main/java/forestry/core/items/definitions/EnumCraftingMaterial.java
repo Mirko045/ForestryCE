@@ -1,15 +1,13 @@
 package forestry.core.items.definitions;
 
-import java.util.Locale;
-
 import forestry.api.core.IItemSubtype;
+
+import java.util.Locale;
 
 public enum EnumCraftingMaterial implements IItemSubtype {
 	PULSATING_DUST,
 	PULSATING_MESH,
 	WOOD_PULP,
-	BEESWAX,
-	REFRACTORY_WAX,
 	SILK_WISP,
 	WOVEN_SILK,
 	ICE_SHARD,
@@ -25,6 +23,6 @@ public enum EnumCraftingMaterial implements IItemSubtype {
 
 	@Override
 	public String getSerializedName() {
-		return name;
+		return this.name;
 	}
 }

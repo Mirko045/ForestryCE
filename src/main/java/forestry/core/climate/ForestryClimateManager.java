@@ -1,7 +1,10 @@
 package forestry.core.climate;
 
-import java.util.IdentityHashMap;
-
+import forestry.api.climate.ClimateState;
+import forestry.api.climate.IClimateManager;
+import forestry.api.climate.IClimateProvider;
+import forestry.api.core.HumidityType;
+import forestry.api.core.TemperatureType;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
@@ -9,14 +12,9 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.biome.Biome;
-
-import forestry.api.climate.ClimateState;
-import forestry.api.climate.IClimateManager;
-import forestry.api.climate.IClimateProvider;
-import forestry.api.core.HumidityType;
-import forestry.api.core.TemperatureType;
-
 import org.jetbrains.annotations.ApiStatus;
+
+import java.util.IdentityHashMap;
 
 public class ForestryClimateManager implements IClimateManager {
 	private final IdentityHashMap<ResourceKey<Biome>, TemperatureType> temperatures = new IdentityHashMap<>();
@@ -30,7 +28,7 @@ public class ForestryClimateManager implements IClimateManager {
 
 	@Override
 	public TemperatureType getTemperature(ResourceKey<Biome> biome) {
-		return this.temperatures.get(biome);
+		return this.temperatures.getOrDefault(biome, TemperatureType.NORMAL);
 	}
 
 	@Override
@@ -41,7 +39,7 @@ public class ForestryClimateManager implements IClimateManager {
 
 	@Override
 	public HumidityType getHumidity(ResourceKey<Biome> biome) {
-		return this.humidities.get(biome);
+		return this.humidities.getOrDefault(biome, HumidityType.NORMAL);
 	}
 
 	@Override

@@ -10,12 +10,11 @@
  ******************************************************************************/
 package forestry.arboriculture.worldgen;
 
+import forestry.api.arboriculture.ITreeGenData;
+import forestry.core.worldgen.FeatureHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelAccessor;
-
-import forestry.api.arboriculture.ITreeGenData;
-import forestry.core.worldgen.FeatureHelper;
 
 public class FeaturePoplar extends FeatureTree {
 
@@ -25,20 +24,20 @@ public class FeaturePoplar extends FeatureTree {
 
 	@Override
 	protected void generateLeaves(LevelAccessor level, RandomSource rand, TreeBlockTypeLeaf leaf, TreeContour contour, BlockPos startPos) {
-		int leafSpawn = height + 1;
-		int leafRadius = (girth/2) + 1;
+		int leafSpawn = this.height + 1;
+		int leafRadius = (this.girth/2) + 1;
 
-		while (leafSpawn > girth - 1) {
+		while (leafSpawn > this.girth - 1) {
 
 			float failChance = 0.3f;
 
-			if (leafSpawn >= height-1)
+			if (leafSpawn >= this.height-1)
 				failChance = 0.6f;
 
-			if (leafSpawn == height+1)
+			if (leafSpawn == this.height+1)
 				failChance = 0.99f;
 
-			FeatureHelper.generateCylinderFromPosWithChance(level, leaf, startPos.offset(girth/2, leafSpawn--, girth/2), leafRadius, 2f, 1, FeatureHelper.EnumReplaceMode.SOFT, contour, rand, failChance);
+			FeatureHelper.generateCylinderFromPosWithChance(level, leaf, startPos.offset(this.girth/2, leafSpawn--, this.girth/2), leafRadius, 2f, 1, FeatureHelper.EnumReplaceMode.SOFT, contour, rand, failChance);
 		}
 	}
 }

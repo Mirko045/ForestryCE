@@ -1,18 +1,11 @@
-/*******************************************************************************
- * Copyright 2011-2014 SirSengir
- *
- * This work (the API) is licensed under the "MIT" License, see LICENSE.txt for details.
- ******************************************************************************/
 package forestry.api.modules;
+
+import forestry.api.client.IClientModuleHandler;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.eventbus.api.IEventBus;
 
 import java.util.List;
 import java.util.function.Consumer;
-
-import net.minecraft.resources.ResourceLocation;
-
-import net.minecraftforge.eventbus.api.IEventBus;
-
-import forestry.api.client.IClientModuleHandler;
 
 /**
  * IF YOU WANT TO ADD BEE SPECIES, FORESTRY COMPATIBILITY, ETC. USE A {@link forestry.api.plugin.IForestryPlugin}.
@@ -59,6 +52,7 @@ public interface IForestryModule {
 	 * Note: this is generally not recommended to use.
 	 * Called during Forestry's common phase. Initialize any static API.
 	 */
+	@Deprecated
 	default void setupApi() {
 	}
 
