@@ -12,7 +12,7 @@ package forestry.core.tiles;
 
 import forestry.api.core.ForestryError;
 import forestry.api.core.IErrorLogic;
-import forestry.core.circuits.ISpeedUpgradable;
+import forestry.core.circuits.IMachineUpgradable;
 import forestry.core.network.IStreamableGui;
 import forestry.core.render.TankRenderInfo;
 import forestry.energy.EnergyHelper;
@@ -34,7 +34,7 @@ import net.minecraftforge.common.util.LazyOptional;
 import javax.annotation.Nullable;
 
 // todo rename "ticks" to "steps" in 1.21 to clarify they're different than actual ticks
-public abstract class TilePowered extends TileBase implements IRenderableTile, ISpeedUpgradable, IStreamableGui, IPowerHandler {
+public abstract class TilePowered extends TileBase implements IRenderableTile, IMachineUpgradable, IStreamableGui, IPowerHandler {
 	private static final int WORK_TICK_INTERVAL = 5; // one Forestry work tick happens every WORK_TICK_INTERVAL game ticks
 
 	private final ForestryEnergyStorage energyStorage;
