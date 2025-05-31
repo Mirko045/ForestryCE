@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "forestry:fir_log"
-            ]
+            "tag": "forestry:fir_logs"
           }
         ]
       },

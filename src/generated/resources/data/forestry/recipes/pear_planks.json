@@ -3,7 +3,7 @@
   "category": "building",
   "ingredients": [
     {
-      "item": "forestry:pear_log"
+      "tag": "forestry:pear_logs"
     }
   ],
   "result": {

@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "forestry:dogwood_log"
-            ]
+            "tag": "forestry:dogwood_logs"
           }
         ]
       },

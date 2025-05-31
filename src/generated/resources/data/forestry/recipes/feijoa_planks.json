@@ -3,7 +3,7 @@
   "category": "building",
   "ingredients": [
     {
-      "item": "forestry:feijoa_log"
+      "tag": "forestry:feijoa_logs"
     }
   ],
   "result": {

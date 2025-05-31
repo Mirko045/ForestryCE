@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "forestry:monkey_puzzle_fireproof_log"
-            ]
+            "tag": "forestry:fireproof_monkey_puzzle_logs"
           }
         ]
       },

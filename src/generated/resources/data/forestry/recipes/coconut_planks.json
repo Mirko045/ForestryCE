@@ -3,7 +3,7 @@
   "category": "building",
   "ingredients": [
     {
-      "item": "forestry:coconut_log"
+      "tag": "forestry:coconut_logs"
     }
   ],
   "result": {

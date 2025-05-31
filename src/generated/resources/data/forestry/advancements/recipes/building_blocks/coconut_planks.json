@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "forestry:coconut_log"
-            ]
+            "tag": "forestry:coconut_logs"
           }
         ]
       },

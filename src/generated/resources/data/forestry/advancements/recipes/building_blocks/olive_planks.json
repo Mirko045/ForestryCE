@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "forestry:olive_log"
-            ]
+            "tag": "forestry:olive_logs"
           }
         ]
       },

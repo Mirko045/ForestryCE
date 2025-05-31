@@ -3,7 +3,7 @@
   "category": "building",
   "ingredients": [
     {
-      "item": "forestry:kauri_log"
+      "tag": "forestry:kauri_logs"
     }
   ],
   "result": {

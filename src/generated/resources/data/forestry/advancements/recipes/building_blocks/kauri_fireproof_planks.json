@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "forestry:kauri_fireproof_log"
-            ]
+            "tag": "forestry:fireproof_kauri_logs"
           }
         ]
       },

@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "forestry:feijoa_log"
-            ]
+            "tag": "forestry:feijoa_logs"
           }
         ]
       },

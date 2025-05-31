@@ -3,7 +3,7 @@
   "category": "building",
   "ingredients": [
     {
-      "item": "forestry:jacaranda_log"
+      "tag": "forestry:jacaranda_logs"
     }
   ],
   "result": {

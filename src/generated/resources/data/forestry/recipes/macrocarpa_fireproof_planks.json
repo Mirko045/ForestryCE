@@ -3,7 +3,7 @@
   "category": "building",
   "ingredients": [
     {
-      "item": "forestry:macrocarpa_fireproof_log"
+      "tag": "forestry:fireproof_macrocarpa_logs"
     }
   ],
   "result": {

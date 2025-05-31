@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "forestry:beech_log"
-            ]
+            "tag": "forestry:beech_logs"
           }
         ]
       },

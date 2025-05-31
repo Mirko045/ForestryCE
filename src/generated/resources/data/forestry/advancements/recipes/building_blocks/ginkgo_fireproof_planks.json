@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "forestry:ginkgo_fireproof_log"
-            ]
+            "tag": "forestry:fireproof_ginkgo_logs"
           }
         ]
       },

@@ -5,9 +5,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "forestry:jacaranda_log"
-            ]
+            "tag": "forestry:jacaranda_logs"
           }
         ]
       },
