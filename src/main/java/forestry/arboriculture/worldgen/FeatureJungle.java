@@ -11,6 +11,7 @@
 package forestry.arboriculture.worldgen;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import net.minecraft.core.BlockPos;
@@ -26,7 +27,7 @@ public class FeatureJungle extends FeatureTreeVanilla {
 	}
 
 	@Override
-	public Set<BlockPos> generateTrunk(LevelAccessor level, RandomSource rand, TreeBlockTypeLog wood, BlockPos startPos) {
+	public void generateTrunk(LevelAccessor level, List<BlockPos> logOrigins, List<BlockPos> branchCoords, RandomSource rand, TreeBlockTypeLog wood, BlockPos startPos) {
 		int height = this.height;
 		float vinesChance = 0.0f;
 		if (girth >= 2) {
@@ -34,9 +35,8 @@ public class FeatureJungle extends FeatureTreeVanilla {
 			vinesChance = 0.8f;
 		}
 
-		FeatureHelper.generateTreeTrunk(level, rand, wood, startPos, height, girth, 0, vinesChance, null, 0);
+		FeatureHelper.generateTreeTrunk(level, logOrigins, rand, wood, startPos, height, girth, 0, vinesChance, null, 0);
 
-		Set<BlockPos> branchCoords = new HashSet<>();
 		if (height > 10) {
 			int branchSpawn = 6;
 			while (branchSpawn < height - 2) {
@@ -45,7 +45,6 @@ public class FeatureJungle extends FeatureTreeVanilla {
 			}
 		}
 
-		return branchCoords;
 	}
 
 	@Override

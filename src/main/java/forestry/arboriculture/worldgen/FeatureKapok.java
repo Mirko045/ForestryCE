@@ -11,6 +11,7 @@
 package forestry.arboriculture.worldgen;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import net.minecraft.core.BlockPos;
@@ -27,11 +28,10 @@ public class FeatureKapok extends FeatureTree {
 	}
 
 	@Override
-	public Set<BlockPos> generateTrunk(LevelAccessor level, RandomSource rand, TreeBlockTypeLog wood, BlockPos startPos) {
-		FeatureHelper.generateTreeTrunk(level, rand, wood, startPos, height, girth, 0, 0.6f, null, 0);
+	public void generateTrunk(LevelAccessor level, List<BlockPos> logOrigins, List<BlockPos> branchCoords, RandomSource rand, TreeBlockTypeLog wood, BlockPos startPos) {
+		FeatureHelper.generateTreeTrunk(level, logOrigins, rand, wood, startPos, height, girth, 0, 0.6f, null, 0);
 		FeatureHelper.generateSupportStems(wood, level, rand, startPos, height, girth, 0.8f, 0.4f);
 
-		Set<BlockPos> branchCoords = new HashSet<>();
 		int leafSpawn = height + 1;
 		while (leafSpawn > height - 4) {
 			int radius = Math.round(girth * (height - leafSpawn) / 1.5f) + 6;
@@ -39,7 +39,6 @@ public class FeatureKapok extends FeatureTree {
 			leafSpawn -= 2;
 		}
 
-		return branchCoords;
 	}
 
 	@Override

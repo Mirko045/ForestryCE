@@ -11,6 +11,7 @@
 package forestry.arboriculture.worldgen;
 
 import javax.annotation.Nullable;
+import java.util.List;
 import java.util.Set;
 
 import net.minecraft.core.BlockPos;
@@ -46,9 +47,8 @@ public abstract class FeatureTree extends FeatureArboriculture {
 	}
 
 	@Override
-	public Set<BlockPos> generateTrunk(LevelAccessor level, RandomSource rand, TreeBlockTypeLog wood, BlockPos startPos) {
-		FeatureHelper.generateTreeTrunk(level, rand, wood, startPos, height, girth, 0, 0, null, 0);
-		return Set.of();
+	public void generateTrunk(LevelAccessor level, List<BlockPos> logOrigins, List<BlockPos> branchCoords, RandomSource rand, TreeBlockTypeLog wood, BlockPos startPos) {
+		FeatureHelper.generateTreeTrunk(level, logOrigins, rand, wood, startPos, height, girth, 0, 0, null, 0);
 	}
 
 	@Override
@@ -61,9 +61,9 @@ public abstract class FeatureTree extends FeatureArboriculture {
 	}
 
 	@Override
-	protected void generateExtras(LevelAccessor level, RandomSource rand, BlockPos startPos) {
+	protected void generateExtras(LevelAccessor level, RandomSource rand, BlockPos startPos, TreeContour contour) {
 		if (hasPods()) {
-			FeatureHelper.generatePods(tree, level, rand, startPos, height, minPodHeight, girth, FeatureHelper.EnumReplaceMode.AIR);
+			FeatureHelper.generatePods(tree, level, rand, startPos, height, minPodHeight, girth, contour, FeatureHelper.EnumReplaceMode.AIR);
 		}
 	}
 

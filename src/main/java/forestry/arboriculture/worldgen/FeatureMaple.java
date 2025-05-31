@@ -11,6 +11,7 @@
 package forestry.arboriculture.worldgen;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import net.minecraft.core.BlockPos;
@@ -27,14 +28,12 @@ public class FeatureMaple extends FeatureTree {
 	}
 
 	@Override
-	public Set<BlockPos> generateTrunk(LevelAccessor level, RandomSource rand, TreeBlockTypeLog wood, BlockPos startPos) {
-		FeatureHelper.generateTreeTrunk(level, rand, wood, startPos, height, girth, 0, 0, null, 0);
+	public void generateTrunk(LevelAccessor level, List<BlockPos> logOrigins, List<BlockPos> branchCoords, RandomSource rand, TreeBlockTypeLog wood, BlockPos startPos) {
+		FeatureHelper.generateTreeTrunk(level, branchCoords, rand, wood, startPos, height, girth, 0, 0, null, 0);
 
-		Set<BlockPos> branchCoords = new HashSet<>();
 		for (int yBranch = 2; yBranch < height - 2; yBranch++) {
 			branchCoords.addAll(FeatureHelper.generateBranches(level, rand, wood, startPos.offset(0, yBranch, 0), girth, 0.15f, 0.25f, Math.round((height - yBranch) * 0.25f), 1, 0.25f));
 		}
-		return branchCoords;
 	}
 
 	@Override

@@ -10,6 +10,7 @@
  ******************************************************************************/
 package forestry.arboriculture.worldgen;
 
+import java.util.List;
 import java.util.Set;
 
 import net.minecraft.core.BlockPos;
@@ -26,9 +27,9 @@ public class FeaturePapaya extends FeatureTree {
 	}
 
 	@Override
-	public Set<BlockPos> generateTrunk(LevelAccessor level, RandomSource rand, TreeBlockTypeLog wood, BlockPos startPos) {
-		FeatureHelper.generateTreeTrunk(level, rand, wood, startPos, height, girth, 0, 0, null, 0);
-		return FeatureHelper.generateBranches(level, rand, wood, startPos.offset(0, height - 1, 0), girth, 0.15f, 0.25f, height / 4, 1, 0.25f);
+	public void generateTrunk(LevelAccessor level, List<BlockPos> logOrigins, List<BlockPos> branchCoords, RandomSource rand, TreeBlockTypeLog wood, BlockPos startPos) {
+		FeatureHelper.generateTreeTrunk(level, logOrigins, rand, wood, startPos, height, girth, 0, 0, null, 0);
+		branchCoords.addAll(FeatureHelper.generateBranches(level, rand, wood, startPos.offset(0, height - 1, 0), girth, 0.15f, 0.25f, height / 4, 1, 0.25f));
 	}
 
 	@Override

@@ -11,6 +11,7 @@
 package forestry.arboriculture.worldgen;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import net.minecraft.core.BlockPos;
@@ -26,10 +27,8 @@ public class FeatureCamelthorn extends FeatureTree {
 	}
 
 	@Override
-	public Set<BlockPos> generateTrunk(LevelAccessor level, RandomSource rand, TreeBlockTypeLog wood, BlockPos startPos) {
-		FeatureHelper.generateTreeTrunk(level, rand, wood, startPos, height - 2, girth, 0, 0, null, 0);
-
-		Set<BlockPos> branches = new HashSet<>();
+	public void generateTrunk(LevelAccessor level, List<BlockPos> logOrigins, List<BlockPos> branchCoords, RandomSource rand, TreeBlockTypeLog wood, BlockPos startPos) {
+		FeatureHelper.generateTreeTrunk(level, logOrigins, rand, wood, startPos, height - 2, girth, 0, 0, null, 0);
 
 		FeatureHelper.generateBranches(level, rand, wood, startPos.offset(0, height-3, 0), girth, 0.5f, 0.15f, 3, 1, 1);
 
@@ -38,13 +37,11 @@ public class FeatureCamelthorn extends FeatureTree {
 		if (height > 7) {
 			while (y >= 3) {
 
-				branches.addAll(FeatureHelper.generateBranches(level, rand, wood, startPos.offset(0, y, 0), girth, 0.25f, 0.3f, 3, 1, 0.5f));
+				branchCoords.addAll(FeatureHelper.generateBranches(level, rand, wood, startPos.offset(0, y, 0), girth, 0.25f, 0.3f, 3, 1, 0.5f));
 
 				y -= rand.nextIntBetweenInclusive(3, 5);
 			}
 		}
-
-		return branches;
 	}
 
 	@Override

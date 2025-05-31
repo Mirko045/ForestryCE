@@ -10,6 +10,7 @@
  ******************************************************************************/
 package forestry.arboriculture.worldgen;
 
+import java.util.List;
 import java.util.Set;
 
 import net.minecraft.core.BlockPos;
@@ -26,8 +27,8 @@ public class FeatureChestnut extends FeatureTree {
 	}
 
 	@Override
-	public Set<BlockPos> generateTrunk(LevelAccessor level, RandomSource rand, TreeBlockTypeLog wood, BlockPos startPos) {
-		FeatureHelper.generateTreeTrunk(level, rand, wood, startPos, height, girth, 0, 0, null, 0);
+	public void generateTrunk(LevelAccessor level, List<BlockPos> logOrigins, List<BlockPos> branchCoords, RandomSource rand, TreeBlockTypeLog wood, BlockPos startPos) {
+		FeatureHelper.generateTreeTrunk(level, logOrigins, rand, wood, startPos, height, girth, 0, 0, null, 0);
 
 		int branchHeight = 4;
 		if (rand.nextBoolean()) {
@@ -36,7 +37,7 @@ public class FeatureChestnut extends FeatureTree {
 
 		int branchRadius = height / 2;
 
-		return FeatureHelper.generateBranches(level, rand, wood, startPos.offset(0, branchHeight, 0), girth, 0.5f, 0.5f, branchRadius, 2, 1.0f);
+		branchCoords.addAll(FeatureHelper.generateBranches(level, rand, wood, startPos.offset(0, branchHeight, 0), girth, 0.5f, 0.5f, branchRadius, 2, 1.0f));
 	}
 
 	@Override

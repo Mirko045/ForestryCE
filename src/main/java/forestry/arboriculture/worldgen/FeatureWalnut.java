@@ -11,6 +11,7 @@
 package forestry.arboriculture.worldgen;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import net.minecraft.core.BlockPos;
@@ -27,20 +28,18 @@ public class FeatureWalnut extends FeatureTree {
 	}
 
 	@Override
-	public Set<BlockPos> generateTrunk(LevelAccessor level, RandomSource rand, TreeBlockTypeLog wood, BlockPos startPos) {
-		FeatureHelper.generateTreeTrunk(level, rand, wood, startPos, height, girth, 0, 0, null, 0);
+	public void generateTrunk(LevelAccessor level, List<BlockPos> logOrigins, List<BlockPos> branchCoords, RandomSource rand, TreeBlockTypeLog wood, BlockPos startPos) {
+		FeatureHelper.generateTreeTrunk(level, logOrigins, rand, wood, startPos, height, girth, 0, 0, null, 0);
 
-		Set<BlockPos> branchEnds = new HashSet<>();
 
 		int branchHeight = height - 3;
 		float branchSize = 2;
 		while (branchHeight >= 3) {
-			branchEnds.addAll(FeatureHelper.generateBranches(level, rand, wood, startPos.offset(0, branchHeight, 0), girth, 0.2f, 0.2f, (int) branchSize, 1, 0.5f));
+			branchCoords.addAll(FeatureHelper.generateBranches(level, rand, wood, startPos.offset(0, branchHeight, 0), girth, 0.2f, 0.2f, (int) branchSize, 1, 0.5f));
 			branchHeight--;
 			branchSize += 0.25f;
 		}
 
-		return branchEnds;
 	}
 
 	@Override

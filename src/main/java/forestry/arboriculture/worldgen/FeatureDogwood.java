@@ -17,6 +17,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelAccessor;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class FeatureDogwood extends FeatureTree {
@@ -25,11 +26,8 @@ public class FeatureDogwood extends FeatureTree {
 	}
 
 	@Override
-	public Set<BlockPos> generateTrunk(LevelAccessor level, RandomSource rand, TreeBlockTypeLog wood, BlockPos startPos) {
-		FeatureHelper.generateTreeTrunk(level, rand, wood, startPos, height, girth, 0, 0, null, 0);
-
-		Set<BlockPos> branchPos = new HashSet<>();
-
+	public void generateTrunk(LevelAccessor level, List<BlockPos> logOrigins, List<BlockPos> branchCoords, RandomSource rand, TreeBlockTypeLog wood, BlockPos startPos) {
+		FeatureHelper.generateTreeTrunk(level, logOrigins, rand, wood, startPos, height, girth, 0, 0, null, 0);
 
 		for (int y = height-2; y >= 2; y-=2){
 			int branchRadius = height/2;
@@ -37,10 +35,9 @@ public class FeatureDogwood extends FeatureTree {
 			if (y > height/2)
 				branchRadius = (int)Math.max(2, branchRadius * 0.7f);
 
-			branchPos.addAll(FeatureHelper.generateBranches(level, rand, wood, startPos.offset(0, y, 0), girth, 0.2f, 0.25f, branchRadius, 1, 0.5f));
+			branchCoords.addAll(FeatureHelper.generateBranches(level, rand, wood, startPos.offset(0, y, 0), girth, 0.2f, 0.25f, branchRadius, 1, 0.5f));
 		}
 
-		return branchPos;
 	}
 
 	@Override

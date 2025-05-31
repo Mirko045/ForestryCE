@@ -17,6 +17,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelAccessor;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class FeatureOrange extends FeatureTree {
@@ -25,10 +26,9 @@ public class FeatureOrange extends FeatureTree {
 	}
 
 	@Override
-	public Set<BlockPos> generateTrunk(LevelAccessor level, RandomSource rand, TreeBlockTypeLog wood, BlockPos startPos) {
-		FeatureHelper.generateTreeTrunk(level, rand, wood, startPos, height, girth, 0, 0, null, 0);
+	public void generateTrunk(LevelAccessor level, List<BlockPos> logOrigins, List<BlockPos> branchCoords, RandomSource rand, TreeBlockTypeLog wood, BlockPos startPos) {
+		FeatureHelper.generateTreeTrunk(level, logOrigins, rand, wood, startPos, height, girth, 0, 0, null, 0);
 
-		Set<BlockPos> branches = new HashSet<>();
 
 		int branchSpawn = height - 1;
 		int branchCount = 1;
@@ -36,7 +36,7 @@ public class FeatureOrange extends FeatureTree {
 
 		do {
 
-			branches.addAll(FeatureHelper.generateBranches(level, rand, wood,
+			branchCoords.addAll(FeatureHelper.generateBranches(level, rand, wood,
 					startPos.offset(0, branchSpawn, 0),
 					girth,
 					0.4f, 0.15f,
@@ -46,7 +46,6 @@ public class FeatureOrange extends FeatureTree {
 			branchSpawn-=3;
 		} while (branchSpawn >= 2);
 
-		return branches;
 	}
 
 	@Override

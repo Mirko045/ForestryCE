@@ -11,6 +11,7 @@
 package forestry.arboriculture.worldgen;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import net.minecraft.core.BlockPos;
@@ -24,11 +25,6 @@ public class FeatureSpruce extends FeatureTree {
 
 	public FeatureSpruce(ITreeGenData tree) {
 		super(tree, 5, 3);
-	}
-
-	@Override
-	public Set<BlockPos> generateTrunk(LevelAccessor level, RandomSource rand, TreeBlockTypeLog wood, BlockPos startPos) {
-		return FeatureHelper.generateTreeTrunk(level, rand, wood, startPos, height, girth, 0, 0, null, 0);
 	}
 
 	@Override

@@ -11,6 +11,7 @@
 package forestry.arboriculture.worldgen;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 
 import net.minecraft.util.RandomSource;
@@ -28,9 +29,10 @@ public class FeatureEbony extends FeatureTree {
 	}
 
 	@Override
-	public Set<BlockPos> generateTrunk(LevelAccessor level, RandomSource rand, TreeBlockTypeLog wood, BlockPos startPos) {
+	public void generateTrunk(LevelAccessor level, List<BlockPos> logOrigins, List<BlockPos> branchCoords, RandomSource rand, TreeBlockTypeLog wood, BlockPos startPos) {
 		int trunksGenerated = 0;
 
+		//TODO: Anything but this
 		for (int x = 0; x < girth; x++) {
 			for (int z = 0; z < girth; z++) {
 				if (rand.nextFloat() < 0.6f) {
@@ -51,10 +53,8 @@ public class FeatureEbony extends FeatureTree {
 
 		// Generate backup trunk, if we failed to generate any.
 		if (trunksGenerated <= 0) {
-			FeatureHelper.generateTreeTrunk(level, rand, wood, startPos, height, 1, 0, 0.6f, null, 0);
+			FeatureHelper.generateTreeTrunk(level, logOrigins, rand, wood, startPos, height, 1, 0, 0.6f, null, 0);
 		}
-
-		return Collections.emptySet();
 	}
 
 	@Override
