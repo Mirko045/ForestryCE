@@ -12,7 +12,7 @@ package forestry.core.tiles;
 
 import forestry.api.core.ForestryError;
 import forestry.api.core.IErrorLogic;
-import forestry.core.circuits.ISpeedUpgradable;
+import forestry.core.circuits.IMachineUpgradable;
 import forestry.core.network.IStreamableGui;
 import forestry.core.render.TankRenderInfo;
 import forestry.energy.EnergyHelper;
@@ -34,7 +34,7 @@ import net.minecraftforge.common.util.LazyOptional;
 import javax.annotation.Nullable;
 
 // todo rename "ticks" to "steps" in 1.21 to clarify they're different than actual ticks
-public abstract class TilePowered extends TileBase implements IRenderableTile, ISpeedUpgradable, IStreamableGui, IPowerHandler {
+public abstract class TilePowered extends TileBase implements IRenderableTile, IMachineUpgradable, IStreamableGui, IPowerHandler {
 	private static final int WORK_TICK_INTERVAL = 5; // one Forestry work tick happens every WORK_TICK_INTERVAL game ticks
 
 	private final ForestryEnergyStorage energyStorage;
@@ -49,6 +49,7 @@ public abstract class TilePowered extends TileBase implements IRenderableTile, I
 
 	protected float speedMultiplier = 1.0f;
 	protected float powerMultiplier = 1.0f;
+	protected double outputMultiplier = 1.0f;
 
 	// the number of work ticks that this tile has had no power
 	private int noPowerTime = 0;
@@ -188,12 +189,21 @@ public abstract class TilePowered extends TileBase implements IRenderableTile, I
         this.ticksPerWorkCycle = data.readVarInt();
 	}
 
-	/* ISpeedUpgradable */
+	/* IMachineUpgradable */
 	@Override
-	public void applySpeedUpgrade(double speedChange, double powerChange) {
-        this.speedMultiplier += speedChange;
-        this.powerMultiplier += powerChange;
-        this.workCounter = 0;
+	public void applyMachineUpgrade(double speedChange, double powerChange, double outputChange) {
+		this.speedMultiplier += speedChange;
+		this.powerMultiplier += powerChange;
+		this.outputMultiplier *= outputChange;
+		this.workCounter = 0;
+	}
+	/* IMachineUpgradable */
+	@Override
+	public void removeMachineUpgrade(double speedChange, double powerChange, double outputChange) {
+		this.speedMultiplier -= speedChange;
+		this.powerMultiplier -= powerChange;
+		this.outputMultiplier /= outputChange;
+		this.workCounter = 0;
 	}
 
 	/* IRenderableTile */

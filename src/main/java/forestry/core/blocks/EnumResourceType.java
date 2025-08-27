@@ -17,7 +17,8 @@ import java.util.Locale;
 public enum EnumResourceType implements IBlockSubtype {
 	APATITE,
 	TIN,
-	BRONZE;
+	BRONZE,
+	AMBER;
 
 	@Override
 	public String getSerializedName() {

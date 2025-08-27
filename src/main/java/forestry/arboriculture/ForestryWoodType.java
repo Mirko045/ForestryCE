@@ -37,11 +37,12 @@ public enum ForestryWoodType implements IWoodType {
 
 	KAPOK(ForestryLeafType.KAPOK),
 	EBONY(ForestryLeafType.EBONY),
+	ELM(ForestryLeafType.ELM),
 	MAHOGANY(ForestryLeafType.MAHOGANY),
 	BALSA(ForestryLeafType.BALSA, 1.0f),
 	WILLOW(ForestryLeafType.WILLOW),
 	WALNUT(ForestryLeafType.WALNUT),
-	GREENHEART(ForestryLeafType.SIPIRI, 7.5f),
+	GREENHEART(ForestryLeafType.SIPIRI, 7.5f), //TODO - 1.21.1 - Rename to Sipiri?
 	HILL_CHERRY(ForestryLeafType.HILL_CHERRY),
 
 	MAHOE(ForestryLeafType.MAHOE),
@@ -51,13 +52,26 @@ public enum ForestryWoodType implements IWoodType {
 	PINE(ForestryLeafType.PINE, 3.0f),
 	PLUM(ForestryLeafType.PLUM),
 	MAPLE(ForestryLeafType.MAPLE),
-	CITRUS(ForestryLeafType.LEMON),
+	CITRUS(ForestryLeafType.LEMON), //TODO - 1.21.1 - Change from Citrus to Lemon, as Orange is also Citrus.
 
 	GIGANTEUM(ForestryLeafType.GIANT_SEQUOIA, 4.0f),
 	IPE(ForestryLeafType.IPE),
 	PADAUK(ForestryLeafType.PADAUK),
 	COCOBOLO(ForestryLeafType.COCOBOLO),
-	ZEBRAWOOD(ForestryLeafType.ZEBRAWOOD);
+	FIR(ForestryLeafType.FIR),
+	COCONUT(ForestryLeafType.COCONUT),
+	BEECH(ForestryLeafType.BEECH),
+	FEIJOA(ForestryLeafType.FEIJOA),
+	DOGWOOD(ForestryLeafType.DOGWOOD),
+	GINKGO(ForestryLeafType.GINKGO),
+	JACARANDA(ForestryLeafType.JACARANDA),
+	MONKEY_PUZZLE(ForestryLeafType.MONKEY_PUZZLE),
+	MACROCARPA(ForestryLeafType.MACROCARPA),
+	OLIVE(ForestryLeafType.OLIVE),
+	ORANGE(ForestryLeafType.ORANGE),
+	PEAR(ForestryLeafType.PEAR),
+	KAURI(ForestryLeafType.KAURI),
+	ZEBRAWOOD(ForestryLeafType.ZEBRAWOOD); //TODO - 1.21.1 - Change to Zebrano
 
 	public static final float DEFAULT_HARDNESS = 2.0f;
 	public static final ForestryWoodType[] VALUES = values();

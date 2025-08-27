@@ -42,6 +42,7 @@ import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.storage.loot.BuiltInLootTables;
 import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
@@ -106,7 +107,7 @@ public class ModuleApiculture extends BlankForestryModule {
 			if (main != null) {
 				LootPoolEntryContainer[] entries = new LootPoolEntryContainer[main.entries.length + 1];
 				System.arraycopy(main.entries, 0, entries, 0, main.entries.length);
-				entries[main.entries.length] = LootTableHelper.beeLoot(ForestryBeeSpecies.RELIC).build();
+				entries[main.entries.length] = LootItem.lootTableItem(ApicultureItems.AMBER_DRONE).build();
 				main.entries = entries;
 			}
 		}

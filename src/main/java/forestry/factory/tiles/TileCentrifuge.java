@@ -135,8 +135,8 @@ public class TileCentrifuge extends TilePowered implements ISocketable, WorldlyC
 		}
 
 		// We are done, add products to queue
-		Collection<ItemStack> products = this.currentRecipe.getProducts(this.level.random);
-        this.pendingProducts.addAll(products);
+		Collection<ItemStack> products = currentRecipe.getProducts(level.random, outputMultiplier);
+		this.pendingProducts.addAll(products);
 
 		//Add Item to preview slot.
 		ItemStack previewStack = getInternalInventory().getItem(InventoryCentrifuge.SLOT_RESOURCE).copy();

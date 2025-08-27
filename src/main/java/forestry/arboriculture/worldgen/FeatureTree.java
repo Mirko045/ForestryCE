@@ -18,11 +18,11 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelAccessor;
 
 import javax.annotation.Nullable;
-import java.util.Set;
+import java.util.List;
 
 public abstract class FeatureTree extends FeatureArboriculture {
-	private static final int minHeight = 4;
-	private static final int maxHeight = 80;
+	private final int minHeight;
+	private final int maxHeight = 80;
 
 	private final int baseHeight;
 	private final int heightVariation;
@@ -30,16 +30,23 @@ public abstract class FeatureTree extends FeatureArboriculture {
 	protected int girth;
 	protected int height;
 
+	protected FeatureTree(ITreeGenData tree, int baseHeight, int heightVariation, int minHeightOverride) {
+		super(tree);
+		this.baseHeight = baseHeight;
+		this.heightVariation = heightVariation;
+		this.minHeight = minHeightOverride;
+	}
+
 	protected FeatureTree(ITreeGenData tree, int baseHeight, int heightVariation) {
 		super(tree);
 		this.baseHeight = baseHeight;
 		this.heightVariation = heightVariation;
+		this.minHeight = 4;
 	}
 
 	@Override
-	public Set<BlockPos> generateTrunk(LevelAccessor level, RandomSource rand, TreeBlockTypeLog wood, BlockPos startPos) {
-		FeatureHelper.generateTreeTrunk(level, rand, wood, startPos, this.height, this.girth, 0, 0, null, 0);
-		return Set.of();
+	public void generateTrunk(LevelAccessor level, List<BlockPos> logOrigins, List<BlockPos> branchCoords, RandomSource rand, TreeBlockTypeLog wood, BlockPos startPos) {
+		FeatureHelper.generateTreeTrunk(level, logOrigins, rand, wood, startPos, this.height, this.girth, 0, 0, null, 0);
 	}
 
 	@Override
@@ -52,9 +59,9 @@ public abstract class FeatureTree extends FeatureArboriculture {
 	}
 
 	@Override
-	protected void generateExtras(LevelAccessor level, RandomSource rand, BlockPos startPos) {
+	protected void generateExtras(LevelAccessor level, RandomSource rand, BlockPos startPos, TreeContour contour) {
 		if (hasPods()) {
-			FeatureHelper.generatePods(this.tree, level, rand, startPos, this.height, minPodHeight, this.girth, FeatureHelper.EnumReplaceMode.AIR);
+			FeatureHelper.generatePods(tree, level, rand, startPos, this.height, minPodHeight, this.girth, contour, FeatureHelper.EnumReplaceMode.AIR);
 		}
 	}
 

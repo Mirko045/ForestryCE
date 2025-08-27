@@ -16,8 +16,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelAccessor;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 public class FeatureJungle extends FeatureTreeVanilla {
 	public FeatureJungle(ITreeGenData tree) {
@@ -25,7 +24,7 @@ public class FeatureJungle extends FeatureTreeVanilla {
 	}
 
 	@Override
-	public Set<BlockPos> generateTrunk(LevelAccessor level, RandomSource rand, TreeBlockTypeLog wood, BlockPos startPos) {
+	public void generateTrunk(LevelAccessor level, List<BlockPos> logOrigins, List<BlockPos> branchCoords, RandomSource rand, TreeBlockTypeLog wood, BlockPos startPos) {
 		int height = this.height;
 		float vinesChance = 0.0f;
 		if (this.girth >= 2) {
@@ -33,9 +32,8 @@ public class FeatureJungle extends FeatureTreeVanilla {
 			vinesChance = 0.8f;
 		}
 
-		FeatureHelper.generateTreeTrunk(level, rand, wood, startPos, height, this.girth, 0, vinesChance, null, 0);
+		FeatureHelper.generateTreeTrunk(level, logOrigins, rand, wood, startPos, height, this.girth, 0, vinesChance, null, 0);
 
-		Set<BlockPos> branchCoords = new HashSet<>();
 		if (height > 10) {
 			int branchSpawn = 6;
 			while (branchSpawn < height - 2) {
@@ -44,7 +42,6 @@ public class FeatureJungle extends FeatureTreeVanilla {
 			}
 		}
 
-		return branchCoords;
 	}
 
 	@Override

@@ -18,6 +18,7 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 
 public class FeatureEbony extends FeatureTree {
@@ -27,9 +28,10 @@ public class FeatureEbony extends FeatureTree {
 	}
 
 	@Override
-	public Set<BlockPos> generateTrunk(LevelAccessor level, RandomSource rand, TreeBlockTypeLog wood, BlockPos startPos) {
+	public void generateTrunk(LevelAccessor level, List<BlockPos> logOrigins, List<BlockPos> branchCoords, RandomSource rand, TreeBlockTypeLog wood, BlockPos startPos) {
 		int trunksGenerated = 0;
 
+		//TODO: Anything but this
 		for (int x = 0; x < this.girth; x++) {
 			for (int z = 0; z < this.girth; z++) {
 				if (rand.nextFloat() < 0.6f) {
@@ -50,10 +52,8 @@ public class FeatureEbony extends FeatureTree {
 
 		// Generate backup trunk, if we failed to generate any.
 		if (trunksGenerated <= 0) {
-			FeatureHelper.generateTreeTrunk(level, rand, wood, startPos, this.height, 1, 0, 0.6f, null, 0);
+			FeatureHelper.generateTreeTrunk(level, logOrigins, rand, wood, startPos, this.height, 1, 0, 0.6f, null, 0);
 		}
-
-		return Collections.emptySet();
 	}
 
 	@Override

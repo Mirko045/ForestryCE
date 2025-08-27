@@ -16,8 +16,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.LevelAccessor;
 
-import java.util.Collections;
-import java.util.Set;
+import java.util.List;
 
 public class FeatureWillow extends FeatureTree {
 
@@ -26,8 +25,8 @@ public class FeatureWillow extends FeatureTree {
 	}
 
 	@Override
-	public Set<BlockPos> generateTrunk(LevelAccessor level, RandomSource rand, TreeBlockTypeLog wood, BlockPos startPos) {
-		FeatureHelper.generateTreeTrunk(level, rand, wood, startPos, this.height, this.girth, 0, 0.8f, null, 0);
+	public void generateTrunk(LevelAccessor level, List<BlockPos> logOrigins, List<BlockPos> branchCoords, RandomSource rand, TreeBlockTypeLog wood, BlockPos startPos) {
+		FeatureHelper.generateTreeTrunk(level, logOrigins, rand, wood, startPos, this.height, this.girth, 0, 0.8f, null, 0);
 		FeatureHelper.generateSupportStems(wood, level, rand, startPos, this.height, this.girth, 0.2f, 0.2f);
 
 		int leafSpawn = this.height - 4;
@@ -38,8 +37,6 @@ public class FeatureWillow extends FeatureTree {
 			}
 			leafSpawn--;
 		}
-
-		return Collections.emptySet();
 	}
 
 	@Override

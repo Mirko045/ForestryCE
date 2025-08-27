@@ -17,7 +17,7 @@ import forestry.api.core.ForestryError;
 import forestry.api.core.IErrorLogic;
 import forestry.api.recipes.ISqueezerRecipe;
 import forestry.core.circuits.ISocketable;
-import forestry.core.circuits.ISpeedUpgradable;
+import forestry.core.circuits.IMachineUpgradable;
 import forestry.core.config.Constants;
 import forestry.core.fluids.StandardTank;
 import forestry.core.fluids.TankManager;
@@ -55,7 +55,7 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import javax.annotation.Nullable;
 import java.util.List;
 
-public class TileSqueezer extends TilePowered implements ISocketable, WorldlyContainer, ILiquidTankTile, ISpeedUpgradable {
+public class TileSqueezer extends TilePowered implements ISocketable, WorldlyContainer, ILiquidTankTile, IMachineUpgradable {
 	private static final int TICKS_PER_RECIPE_TIME = 1;
 	private static final int ENERGY_PER_WORK_CYCLE = 2000;
 	private static final int ENERGY_PER_RECIPE_TIME = ENERGY_PER_WORK_CYCLE / 10;
@@ -151,9 +151,12 @@ public class TileSqueezer extends TilePowered implements ISocketable, WorldlyCon
 		FluidStack resultFluid = this.currentRecipe.getFluidOutput();
         this.productTank.fillInternal(resultFluid, IFluidHandler.FluidAction.EXECUTE);
 
-		if (!this.currentRecipe.getRemnants().isEmpty() && this.level.random.nextFloat() < this.currentRecipe.getRemnantsChance()) {
-			ItemStack remnant = this.currentRecipe.getRemnants().copy();
-            this.inventory.addRemnant(remnant, true);
+		float roll = level.random.nextFloat();
+		double threshhold = currentRecipe.getRemnantsChance() * outputMultiplier;
+
+		if (!currentRecipe.getRemnants().isEmpty() && roll < threshhold) {
+			ItemStack remnant = currentRecipe.getRemnants().copy();
+			inventory.addRemnant(remnant, true);
 		}
 
 		return true;

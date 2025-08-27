@@ -11,7 +11,8 @@ import java.util.Locale;
 public enum ForestryPodType implements IBlockSubtype {
 	COCOA(ForestryAlleles.FRUIT_COCOA),
 	DATES(ForestryAlleles.FRUIT_DATES),
-	PAPAYA(ForestryAlleles.FRUIT_PAPAYA);
+	PAPAYA(ForestryAlleles.FRUIT_PAPAYA),
+	COCONUT(ForestryAlleles.FRUIT_COCONUT);
 
 	private final IValueAllele<IFruit> allele;
 
